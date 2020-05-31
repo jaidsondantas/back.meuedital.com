@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Country;
+use App\Services\Models\QueryServiceModel;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -11,13 +14,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Super Admin',
-            'email' => 'admin@admin.com',
-            'password' => '123',
-            'remember_token' => '',
-            'client_id' => null,
-            'auto_part_id' => null
-        ]);
+        if (!QueryServiceModel::ifExistsData(new User())) {
+            User::create([
+                'name' => 'Super Admin',
+                'email' => 'admin@admin.com',
+                'password' => '123',
+                'remember_token' => '',
+            ]);
+        }
     }
 }

@@ -5,6 +5,9 @@ namespace App\Actions\Traits;
 
 
 use App\Actions\Models\Parameter;
+use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Request;
 
 trait ParameterTrait
 {
@@ -19,7 +22,7 @@ trait ParameterTrait
         $populate = json_decode($request->query('populate'), true);
 
         if(in_array('populateAll', $populate)){
-            $populate = $model::PUPULATEALL;
+            $populate = $model::POPULATEALL;
         }
 
         return new Parameter($limit, $where, $populate, $per_page, $order);

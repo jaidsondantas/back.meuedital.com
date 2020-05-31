@@ -109,9 +109,7 @@ class AuthController extends Controller
         $user = new User([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
-            'client_id' => $request->input('client_id'),
-            'auto_part_id'=> $request->input('auto_part_id')
+            'password' => bcrypt($request->input('password'))
         ]);
 
         $user->save();

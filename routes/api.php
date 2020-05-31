@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\BaseModel;
 use App\Models\TypePerson;
 use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\Route;
@@ -33,6 +34,7 @@ Route::group([
      * Rotas protected
      */
 
+    RouteService::createRoute('country', 'CountryController', BaseModel::getActionsDefault());
 
 });
 

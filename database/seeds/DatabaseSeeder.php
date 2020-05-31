@@ -13,19 +13,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UserSeeder::class);
-        $this->call(TypePeopleSeeder::class);
-        $this->call(ClientSeeder::class);
-        $this->call(SpecialtiesSeeder::class);
-        $this->call(AutoPartsSeeder::class);
-        $this->call(AddressesSeeder::class);
-        $this->call(CategoryProductsSeeder::class);
-        $this->call(AssemblerCarsSeeder::class);
-        $this->call(CarModelsSeeder::class);
-        $this->call(ProductDefaultsSeeder::class);
-        $this->call(TermOfAcceptancesSeeder::class);
-        $this->call(RepresentativesSeeder::class);
-        $this->call(AutoPartRepresentativeXTermOfAcceptancesSeeder::class);
-        $this->call(TypeMethodsSeeder::class);
-        $this->call(PaymentMethodsAcceptedSeeder::class);
+        $this->call(CountrySeeder::class);
     }
 }

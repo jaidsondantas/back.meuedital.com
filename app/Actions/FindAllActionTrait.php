@@ -3,12 +3,14 @@
 namespace App\Actions;
 
 use App\Services\DataProcessingService;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use function count;
 use function response;
 
 trait FindAllActionTrait
 {
-    public function findAll($model, $request, $aliasEntity = '')
+    public function findAll(Model $model, $request, $aliasEntity = '')
     {
         $parameters = $this->getParameters($request, $model);
 
