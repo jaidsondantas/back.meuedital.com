@@ -3,9 +3,11 @@
 namespace App\Actions;
 
 
+use App\Models\OthersModels\AliasModel;
+
 trait DeleteMultipleActionTrait
 {
-    public function deleteMultiple($request, $model, $aliasEntity = 'Entidade')
+    public function deleteMultiple($request, $model, AliasModel $alias)
     {
         $parameters = $this->getParameters($request, $model);
 
@@ -13,8 +15,6 @@ trait DeleteMultipleActionTrait
         $model::whereIn('id', $ids)->update(['deleted_by' => auth()->user()->id]);
         $model::destroy($ids);
 
-        return response()->json([
-            "message" => "$aliasEntity deletados(as) com sucesso.",
-        ], 200);
+        return $this->responseDeleteMultiple($alias);
     }
 }

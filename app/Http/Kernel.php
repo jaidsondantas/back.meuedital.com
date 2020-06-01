@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\oAuthExceptionHandler;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -40,6 +41,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             'throttle:60,1',
+//            'oauth_exception',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -52,6 +54,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+//        'oauth_exception' => oAuthExceptionHandler::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,

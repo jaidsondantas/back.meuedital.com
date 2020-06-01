@@ -14,7 +14,8 @@ trait MessagesTraits
             'between' => 'The :attribute value :input is not between :min - :max.',
             'in' => 'The :attribute must be one of the following types: :values.',
             'confirmed' => 'O :attribute não está identico.',
-            'unique' => 'O :attribute enviado já está cadastrado.'
+            'unique' => 'O :attribute enviado já está cadastrado.',
+            'exists' => 'O :attribute selecionado é inválido'
         ];
     }
 }

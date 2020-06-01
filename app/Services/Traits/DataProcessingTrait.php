@@ -63,7 +63,17 @@ trait DataProcessingTrait
 
         $response = new ResponseModel();
         $response->entity = $data->getData()->entity;
-        $response->message = $alias->name->singular . " foi delet$finishVerb com sucesso.";
+        $response->message = $alias->name->singular . " foi deletad$finishVerb com sucesso.";
+
+        return response()->json($response, 200);
+    }
+
+    public function responseDeleteMultiple(AliasModel $alias)
+    {
+        $finishVerb = $this->finishVerb($alias->article);
+
+        $response = new ResponseModel();
+        $response->message = $alias->name->plural . " foram deletad$finishVerb"."s com sucesso.";
 
         return response()->json($response, 200);
     }

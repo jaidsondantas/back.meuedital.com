@@ -5,13 +5,14 @@ namespace App\Actions;
 
 
 use App\Actions\Traits\ParameterTrait;
+use App\Models\BaseModel;
 use App\Services\Traits\DataProcessingTrait;
 
 trait FindIdActionTrait
 {
     use DataProcessingTrait;
 
-    public function findId($id, $model, $request, $alias)
+    public function findId($id, BaseModel $model, $request, $alias)
     {
         $parameters = $this->getParameters($request, $model);
 

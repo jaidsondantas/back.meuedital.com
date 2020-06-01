@@ -196,8 +196,8 @@
                                 },
                                 "type": "object",
                                 "example": {
-                                    "name": "Pessoa Saudavel",
-                                    "initials": "PS"
+                                    "name": "Itália",
+                                    "initials": "IT"
                                 }
                             }
                         }
@@ -297,8 +297,8 @@
                                 },
                                 "type": "object",
                                 "example": {
-                                    "name": "Pessoa Saudavel",
-                                    "initials": "PS"
+                                    "name": "Israel",
+                                    "initials": "IS"
                                 }
                             }
                         }
@@ -316,6 +316,228 @@
             "delete": {
                 "tags": [
                     "Country"
+                ],
+                "summary": "Deletando Paíz",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/state": {
+            "get": {
+                "tags": [
+                    "State"
+                ],
+                "summary": "GET State",
+                "operationId": "App\\Http\\Controllers\\StateController::find",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/order"
+                    },
+                    {
+                        "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "State"
+                ],
+                "summary": "Registro de um novo Paíz",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "initials": {
+                                        "type": "string"
+                                    },
+                                    "country_id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami",
+                                    "initials": "MI",
+                                    "country_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "State"
+                ],
+                "summary": "Deletando Paíz",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/state/1": {
+            "get": {
+                "tags": [
+                    "State"
+                ],
+                "summary": "GET State",
+                "operationId": "App\\Http\\Controllers\\StateController::show",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "State"
+                ],
+                "summary": "Atualizando Paíz",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "initials": {
+                                        "type": "string"
+                                    },
+                                    "country_id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami",
+                                    "initials": "MI",
+                                    "country_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "State"
                 ],
                 "summary": "Deletando Paíz",
                 "operationId": "store",
@@ -456,6 +678,22 @@
             "externalDocs": {
                 "description": "Credentials object",
                 "url": "http://autopecadelivery.com/api/country"
+            }
+        },
+        {
+            "name": "State",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/state"
+            }
+        },
+        {
+            "name": "State",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/state"
             }
         }
     ]

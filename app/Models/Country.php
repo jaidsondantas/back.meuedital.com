@@ -8,6 +8,14 @@ class Country extends BaseModel
 {
     const ALIAS = ['País', 'Países'];
 
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->setPopulate([]);
+    }
+
     /**
      * @return array
      */
@@ -23,5 +31,11 @@ class Country extends BaseModel
             'initials' => ['required', 'string', Rule::unique('countries')->ignore($id), 'max:2']
         ];
     }
+
+    public function state()
+    {
+        return $this->hasMany(State::class);
+    }
+
 
 }

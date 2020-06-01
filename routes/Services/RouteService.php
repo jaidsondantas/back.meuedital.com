@@ -29,6 +29,7 @@ class RouteService
             }
 
             if ($action['method'] == 'put') {
+                $route = $initRoute;
                 if ($action['params'] != '') {
                     $params = $action['params'];
                     $route = "$initRoute/$params";
@@ -37,13 +38,22 @@ class RouteService
             }
 
             if ($action['method'] == 'delete') {
+                $route = $initRoute;
                 if ($action['params'] != '') {
                     $params = $action['params'];
                     $route = "$initRoute/$params";
                 }
-                Route::delete($route, "$controller@$actionString")->name("check-list" . $route . $actionString);
+                Route::delete($route, "$controller@$actionString")->name("check-list." . $route . "." . $actionString);
             }
         }
     }
+
+    public static function setTratamentRoute($model, $actions)
+    {
+
+
+
+    }
+
 
 }

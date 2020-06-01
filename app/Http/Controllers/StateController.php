@@ -8,11 +8,11 @@ use App\Actions\DeleteMultipleActionTrait;
 use App\Actions\FindAllActionTrait;
 use App\Actions\FindIdActionTrait;
 use App\Actions\UpdateActionTrait;
-use App\Models\Country;
+use App\Models\State;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class CountryController extends Controller
+class StateController extends Controller
 {
     use FindAllActionTrait;
     use FindIdActionTrait;
@@ -23,9 +23,9 @@ class CountryController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/country",
-     *     tags={"Country"},
-     *     summary="GET Country",
+     *     path="/state",
+     *     tags={"State"},
+     *     summary="GET State",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -76,14 +76,14 @@ class CountryController extends Controller
      */
     public function find(Request $request)
     {
-        return $this->findAll(new Country(), $request, Country::getAliasEntity(Country::ALIAS, 'M'));
+        return $this->findAll(new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
     }
 
     /**
      * @OA\Get(
-     *     path="/country/1",
-     *     tags={"Country"},
-     *     summary="GET Country",
+     *     path="/state/1",
+     *     tags={"State"},
+     *     summary="GET State",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -120,24 +120,24 @@ class CountryController extends Controller
      */
     public function show($id, Request $request)
     {
-        return $this->findId($id, new Country(), $request, Country::getAliasEntity(Country::ALIAS, 'M'));
+        return $this->findId($id, State::class, $request, State::getAliasEntity(State::ALIAS, 'M'));
     }
 
 
     /**
      * @OA\Tag(
-     *     name="Country",
+     *     name="State",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/country"
+     *         url="http://autopecadelivery.com/api/state"
      *     )
      * )
      * @OA\Post(
-     *     path="/country",
+     *     path="/state",
      *     summary="Registro de um novo Paíz",
      *     operationId="store",
-     *     tags={"Country"},
+     *     tags={"State"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -158,9 +158,14 @@ class CountryController extends Controller
      *                     property="initials",
      *                     type="string"
      *                 ),
+     *                @OA\Property(
+     *                     property="country_id",
+     *                     type="string"
+     *                 ),
      *                 example={
-     *                      "name": "Itália",
-     *                      "initials": "IT"
+     *                  "name": "Miami",
+     *                  "initials": "MI",
+     *                  "country_id": 1,
      *                      }
      *             )
      *         )
@@ -171,7 +176,7 @@ class CountryController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/CountryStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/StateStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -189,23 +194,23 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->create(new Country(), $request, Country::getAliasEntity(Country::ALIAS, 'M'));
+        return $this->create(new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
     }
 
     /**
      * @OA\Tag(
-     *     name="Country",
+     *     name="State",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/country"
+     *         url="http://autopecadelivery.com/api/state"
      *     )
      * )
      * @OA\Put(
-     *     path="/country/1",
+     *     path="/state/1",
      *     summary="Atualizando Paíz",
      *     operationId="store",
-     *     tags={"Country"},
+     *     tags={"State"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -226,9 +231,14 @@ class CountryController extends Controller
      *                     property="initials",
      *                     type="string"
      *                 ),
+     *                @OA\Property(
+     *                     property="country_id",
+     *                     type="string"
+     *                 ),
      *                 example={
-     *                      "name": "Israel",
-     *                      "initials": "IS"
+     *                  "name": "Miami",
+     *                  "initials": "MI",
+     *                  "country_id": 1,
      *                      }
      *             )
      *         )
@@ -239,7 +249,7 @@ class CountryController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/CountryStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/StateStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -258,15 +268,15 @@ class CountryController extends Controller
      */
     public function updateEntity(Request $request, $id)
     {
-        return $this->update($id, new Country(), $request, Country::getAliasEntity(Country::ALIAS, 'M'));
+        return $this->update($id, new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
     }
 
     /**
      * @OA\Delete(
-     *     path="/country/1",
+     *     path="/state/1",
      *     summary="Deletando Paíz",
      *     operationId="store",
-     *     tags={"Country"},
+     *     tags={"State"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -297,15 +307,15 @@ class CountryController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        return $this->delete($id, new Country(), Country::getAliasEntity(Country::ALIAS, 'M'), $request);
+        return $this->delete($id, new State(), State::getAliasEntity(State::ALIAS, 'M'), $request);
     }
 
     /**
      * @OA\Delete(
-     *     path="/country",
+     *     path="/state",
      *     summary="Deletando Paíz",
      *     operationId="store",
-     *     tags={"Country"},
+     *     tags={"State"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -337,7 +347,6 @@ class CountryController extends Controller
      */
     public function destroyMultiple(Request $request)
     {
-        return $this->deleteMultiple($request, Country::class, Country::getAliasEntity(Country::ALIAS, 'M'));
+        return $this->deleteMultiple($request, State::class, State::getAliasEntity(State::ALIAS, 'M'));
     }
-
 }

@@ -2,14 +2,16 @@
 
 namespace App\Actions;
 
+use App\Models\BaseModel;
 use App\Services\Traits\DataProcessingTrait;
+use Faker\Provider\Base;
 use Illuminate\Database\Eloquent\Model;
 use function count;
 
 trait FindAllActionTrait
 {
 
-    public function findAll(Model $model, $request, $alias = null)
+    public function findAll(BaseModel $model, $request, $alias = null)
     {
         $parameters = $this->getParameters($request, $model);
 
