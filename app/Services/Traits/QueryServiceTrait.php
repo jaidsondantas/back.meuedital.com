@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Traits;
 
-use App\Services\Models\QueryServiceModel;
+use App\Services\QueryService;
 use function collect;
 use function current;
 use function dd;
@@ -26,7 +26,7 @@ trait QueryServiceTrait
     public function toCompareOperator($operator)
     {
         $finalOperator = null;
-        foreach (QueryServiceModel::OPERATORS as $key => $o) {
+        foreach (QueryService::OPERATORS as $key => $o) {
             if ($key == $operator) {
                 $finalOperator = $o;
             }

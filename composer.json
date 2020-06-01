@@ -71,6 +71,10 @@
         ],
         "generate:swagger": [
             "@php artisan l5-swagger:generate"
+        ],
+        "autoload": [
+            "@php artisan clear-compiled",
+            "@composer dump-autoload"
         ]
     }
 

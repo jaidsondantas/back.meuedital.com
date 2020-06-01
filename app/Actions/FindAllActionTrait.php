@@ -2,15 +2,14 @@
 
 namespace App\Actions;
 
-use App\Services\DataProcessingService;
+use App\Services\Traits\DataProcessingTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use function count;
-use function response;
 
 trait FindAllActionTrait
 {
-    public function findAll(Model $model, $request, $aliasEntity = '')
+
+    public function findAll(Model $model, $request, $alias = null)
     {
         $parameters = $this->getParameters($request, $model);
 
@@ -27,13 +26,9 @@ trait FindAllActionTrait
             ->paginate($parameters->per_page);
 
         if (count($data) > 0) {
-            $data = DataProcessingService::responseFindAll($data);
-            return response()->json([
-                $data
-            ], 200
-            );
+            return $this->responseFindAll($data);
         } else {
-            return response()->json([$aliasEntity . ' Não encontrada'], 404);
+            return $this->responseNotFoundAll($data, $alias, 400);
         }
     }
 

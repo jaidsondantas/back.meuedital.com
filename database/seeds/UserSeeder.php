@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Country;
-use App\Services\Models\QueryServiceModel;
+use App\Services\QueryService;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        if (!QueryServiceModel::ifExistsData(new User())) {
+        if (!QueryService::ifExistsData(new User())) {
             User::create([
                 'name' => 'Super Admin',
                 'email' => 'admin@admin.com',

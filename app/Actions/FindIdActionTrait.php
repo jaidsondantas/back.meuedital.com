@@ -5,12 +5,13 @@ namespace App\Actions;
 
 
 use App\Actions\Traits\ParameterTrait;
-use App\Services\DataProcessingService;
+use App\Services\Traits\DataProcessingTrait;
 
 trait FindIdActionTrait
 {
+    use DataProcessingTrait;
 
-    public function findId($id, $model, $request, $aliasEntity)
+    public function findId($id, $model, $request, $alias)
     {
         $parameters = $this->getParameters($request, $model);
 
@@ -19,9 +20,9 @@ trait FindIdActionTrait
             ->get();
 
         if (count($data) > 0) {
-            return response()->json($data->first(), 200);
+            return $this->responseFindId($data);
         } else {
-            return response()->json([$aliasEntity . ' Não encontrada'], 404);
+            return $this->responseNotFoundId($alias, 400 );
         }
     }
 }

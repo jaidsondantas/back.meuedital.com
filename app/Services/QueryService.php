@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Services\Models;
+namespace App\Services;
 
 
 use Illuminate\Database\Eloquent\Model;
 
-class QueryServiceModel
+class QueryService
 {
     const OPERATORS = [
         "eq" => "=",

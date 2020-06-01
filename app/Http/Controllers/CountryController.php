@@ -9,6 +9,7 @@ use App\Actions\FindAllActionTrait;
 use App\Actions\FindIdActionTrait;
 use App\Actions\UpdateActionTrait;
 use App\Models\Country;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class CountryController extends Controller
@@ -71,11 +72,11 @@ class CountryController extends Controller
      *
      * Display a listing of the resource.
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function find(Request $request)
     {
-        return $this->findAll(new Country(), $request, Country::ALIAS_ENTITY);
+        return $this->findAll(new Country(), $request, Country::getAliasEntity(Country::ALIAS, 'M'));
     }
 
     /**
@@ -119,7 +120,7 @@ class CountryController extends Controller
      */
     public function show($id, Request $request)
     {
-        return $this->findId($id, Country::class, $request, Country::ALIAS_ENTITY);
+        return $this->findId($id, Country::class, $request, Country::getAliasEntity(Country::ALIAS, 'M'));
     }
 
 
@@ -188,7 +189,7 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->create(Country::class, $request, Country::ALIAS_ENTITY);
+        return $this->create(new Country(), $request, Country::getAliasEntity(Country::ALIAS, 'M'));
     }
 
     /**
@@ -257,7 +258,7 @@ class CountryController extends Controller
      */
     public function updateEntity(Request $request, $id)
     {
-        return $this->update($id, Country::class, $request, Country::ALIAS_ENTITY);
+        return $this->update($id, new Country(), $request, Country::getAliasEntity(Country::ALIAS, 'M'));
     }
 
     /**
@@ -291,11 +292,12 @@ class CountryController extends Controller
      * )
      *
      * @param $id
+     * @param Request $request
      * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        return $this->delete($id, Country::class, Country::ALIAS_ENTITY);
+        return $this->delete($id, new Country(), Country::getAliasEntity(Country::ALIAS, 'M'), $request);
     }
 
     /**
@@ -335,7 +337,7 @@ class CountryController extends Controller
      */
     public function destroyMultiple(Request $request)
     {
-        return $this->deleteMultiple($request, Country::class, Country::ALIAS_ENTITY_PLURAL);
+        return $this->deleteMultiple($request, Country::class, Country::getAliasEntity(Country::ALIAS, 'M'));
     }
 
 }

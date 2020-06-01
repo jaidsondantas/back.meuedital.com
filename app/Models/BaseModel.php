@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\OthersModels\AliasModel;
 use App\Models\Traits\RelationshipUserBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BaseModel extends Model
 {
+    public $aliasEntity;
+    public $aliasEntityPlural;
+
     use SoftDeletes;
     use RelationshipUserBy;
 
@@ -16,11 +20,6 @@ class BaseModel extends Model
     ];
 
     protected $dates = ['deleted_at'];
-
-    const ALIAS_ENTITY = '';
-
-    const ALIAS_ENTITY_PLURAL = '';
-
 
     /**
      * @return array
@@ -60,4 +59,28 @@ class BaseModel extends Model
             ]
         ];
     }
+
+    /**
+     * @param $alias
+     * @param $article
+     * @return mixed
+     */
+    public static function getAliasEntity($alias, $article)
+    {
+        return new AliasModel($alias, $article);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAliasEntityPlural()
+    {
+        return $this->aliasEntityPlural;
+    }
+
+    public function getStatusAttribute($value)
+    {
+        return $value == 1;
+    }
+
 }

@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Country;
-use App\Services\Models\QueryServiceModel;
+use App\Services\QueryService;
 use Illuminate\Database\Seeder;
 
 class CountrySeeder extends Seeder
@@ -13,7 +13,7 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-        if(!QueryServiceModel::ifExistsData(new Country())){
+        if(!QueryService::ifExistsData(new Country())){
 
             Country::create([
                 'name'      => 'Brasil',

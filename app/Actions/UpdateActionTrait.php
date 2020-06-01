@@ -3,11 +3,13 @@
 namespace App\Actions;
 
 
+use App\Actions\Models\ResponseValidate;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 
 trait UpdateActionTrait
 {
-    public function update($id, $model, $request, $aliasEntity = 'Entidade', $bodyRequest = null)
+    public function update($id, Model $model, $request, $alias, $bodyRequest = null)
     {
         $bodyRequest = $bodyRequest == null ? $request : $bodyRequest;
 
@@ -21,18 +23,18 @@ trait UpdateActionTrait
             }
         }
 
-        $validator = Validator::make($entity->getAttributes(), $model::getRules($id), $this->getArrayMessagesValidate());
+        $validator = Validator::make($entity->getAttributes(), $model->getRules($id), $this->getArrayMessagesValidate());
         if ($validator->fails()) {
-            return response()->json(['message' => $validator->getMessageBag()], 400);
+            return response()->json(new ResponseValidate($validator->getMessageBag()), 400);
+        }
+        $entity->updated_by = $request->user()->id;
+
+        try {
+            $entity->save();
+        } catch (\Exception $e) {
+            return $e->getMessage();
         }
 
-        $entity->updated_by = $request->user()->id;
-        $entity->save();
-        $entity = $this->findId($entity->id, $model, $request, $aliasEntity);
-
-        return response()->json([
-            "message" => "$aliasEntity atualizado(a) com sucesso.",
-            "entity" => $entity->getData()
-        ], 201);
+        return $this->findId($entity->id, new $model(), $request, $alias);
     }
 }

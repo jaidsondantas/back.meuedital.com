@@ -3,36 +3,37 @@
 namespace App\Actions;
 
 
+use App\Actions\Models\ResponseValidate;
+use App\Models\OthersModels\AliasModel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 
 trait CreateActionTrait
 {
-    public function create($model, $request, $aliasEntity = 'Entidade', $bodyRequest = null)
+    public function create(Model $model, $request, AliasModel $alias, $bodyRequest = null)
     {
         $bodyRequest = $bodyRequest == null ? $request : $bodyRequest;
 
-
-        $validator = Validator::make($bodyRequest->all(), $model::getRules(), $this->getArrayMessagesValidate());
+        $validator = Validator::make($bodyRequest->all(), $model->getRules(), $this->getArrayMessagesValidate());
         if ($validator->fails()) {
-            return response()->json(['message' => $validator->getMessageBag()], 400);
+            return response()->json(new ResponseValidate($validator->getMessageBag()), 400);
         }
 
-        $entity = new $model();
-        foreach ($bodyRequest->all() as $key => $r) {
-            if ($key != 'populate') {
-                $entity->$key = $r;
+        try {
+            $entity = new $model();
+            foreach ($bodyRequest->all() as $key => $r) {
+                if ($key != 'populate') {
+                    $entity->$key = $r;
+                }
             }
+
+            $entity->created_by = auth()->user()->id;
+            $entity->save();
+
+        }catch (\Exception $e){
+            return $e->getMessage();
         }
 
-        $entity->created_by = auth()->user()->id;
-        $entity->save();
-        $entity = $this->findId($entity->id, $model, $request, $aliasEntity);
-
-        return response()->json([
-            "message" => "$aliasEntity criado(a) com sucesso.",
-            "entity" => [
-                $entity->getOriginalContent()->all()[0]->getTable() => $entity->getData()
-            ]
-        ], 201);
+        return $this->findId($entity->id, new $model(), $request, $alias);
     }
 }

@@ -5,9 +5,6 @@ namespace App\Actions\Traits;
 
 
 use App\Actions\Models\Parameter;
-use App\Models\BaseModel;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Request;
 
 trait ParameterTrait
 {

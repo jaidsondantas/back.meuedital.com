@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Actions\Traits\ParameterTrait;
 use App\Http\Controllers\Traits\MessagesTraits;
-use App\Services\QueryServiceTrait;
+use App\Services\Traits\DataProcessingTrait;
+use App\Services\Traits\QueryServiceTrait;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -39,7 +40,8 @@ use Illuminate\Routing\Controller as BaseController;
  */
 class Controller extends BaseController
 {
-    use ParameterTrait, QueryServiceTrait, MessagesTraits;
+    use ParameterTrait, QueryServiceTrait, MessagesTraits, DataProcessingTrait;
+
 
 
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

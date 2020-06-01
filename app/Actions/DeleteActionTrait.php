@@ -3,22 +3,25 @@
 namespace App\Actions;
 
 
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Eloquent\Model;
 
 trait DeleteActionTrait
 {
-    public function delete($id, $model, $aliasEntity = 'Entidade')
+    public function delete($id, Model $model, $alias, $request)
     {
         $updateEntityDelete = $model::find($id);
-        $updateEntityDelete->deleted_by = auth()->user()->id;
-        $updateEntityDelete->save();
-        $entity = $model::destroy($id);
+        if ($updateEntityDelete) {
+            $updateEntityDelete->deleted_by = auth()->user()->id;
+            $updateEntityDelete->save();
 
-        if ($entity) {
-            return response()->json([
-                "message" => "$aliasEntity deletado(a) com sucesso.",
-                "entity" => $updateEntityDelete
-            ], 200);
+            $response = $this->findId($id, new $model(), $request, $alias);
+            try {
+                $model::destroy($id);
+            } catch (\Exception $e) {
+                return $response;
+            }
+            return $this->responseDelete($response, $alias);
         }
+        return $this->findId($id, new $model(), $request, $alias);
     }
 }
