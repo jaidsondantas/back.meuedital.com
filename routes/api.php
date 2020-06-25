@@ -24,9 +24,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     RouteService::createRoute('country', 'CountryController', BaseModel::getActions());
     RouteService::createRoute('state', 'StateController', BaseModel::getActions());
 });
-
-RouteService::createRoute('country', 'CountryController', BaseModel::getActions(['find']));
-RouteService::createRoute('state', 'StateController', BaseModel::getActions(['find']));
+//
+//RouteService::createRoute('country', 'CountryController', BaseModel::getActions(['find']));
+//RouteService::createRoute('state', 'StateController', BaseModel::getActions(['find']));
 
 
 
