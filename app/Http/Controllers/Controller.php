@@ -14,7 +14,7 @@ use Illuminate\Routing\Controller as BaseController;
 
 /**
  * @OA\Info(
- *     title="CheckList",
+ *     title="meuedital",
  *     version="0.0.1",
  *     @OA\Contact(
  *         email="contato@jaidsondantas.com"
@@ -26,7 +26,7 @@ use Illuminate\Routing\Controller as BaseController;
  * )
  * @OA\Server(
  *     description="Server location {{wamp}}",
- *     url="http://back.checklist.com/api"
+ *     url="http://back.meuedital.com/api"
  * ),
  * @OA\SecurityScheme(
  *      securityScheme="bearerAuth",

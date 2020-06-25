@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "CheckList",
+        "title": "meuedital",
         "contact": {
             "email": "contato@jaidsondantas.com"
         },
@@ -13,7 +13,7 @@
     },
     "servers": [
         {
-            "url": "http://back.checklist.com/api",
+            "url": "http://back.meuedital.com/api",
             "description": "Server location {{wamp}}"
         }
     ],
@@ -661,7 +661,7 @@
             "description": "Credentials object",
             "externalDocs": {
                 "description": "Credentials object",
-                "url": "http://back.checklist.com/api/oauth"
+                "url": "http://back.meuedital.com/api/oauth"
             }
         },
         {

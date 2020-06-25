@@ -21,7 +21,7 @@ class AuthController extends Controller
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://back.checklist.com/api/oauth"
+     *         url="http://back.meuedital.com/api/oauth"
      *     )
      * )
      * @OA\Post(
