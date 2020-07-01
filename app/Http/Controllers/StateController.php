@@ -11,6 +11,7 @@ use App\Actions\UpdateActionTrait;
 use App\Models\State;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Firebase\Auth\Token\Exception\InvalidToken;
 
 class StateController extends Controller
 {
@@ -120,7 +121,7 @@ class StateController extends Controller
      */
     public function show($id, Request $request)
     {
-        return $this->findId($id, State::class, $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->findId($id, new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
     }
 
 

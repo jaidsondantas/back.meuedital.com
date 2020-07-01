@@ -17,8 +17,8 @@ class UserSeeder extends Seeder
         if (!QueryService::ifExistsData(new User())) {
             User::create([
                 'name' => 'Super Admin',
+                'firebase_uid' => '',
                 'email' => 'admin@admin.com',
-                'password' => '123',
                 'remember_token' => '',
             ]);
         }

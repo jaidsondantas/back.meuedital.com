@@ -3,9 +3,6 @@
 namespace App\Actions;
 
 use App\Models\BaseModel;
-use App\Services\Traits\DataProcessingTrait;
-use Faker\Provider\Base;
-use Illuminate\Database\Eloquent\Model;
 use function count;
 
 trait FindAllActionTrait
