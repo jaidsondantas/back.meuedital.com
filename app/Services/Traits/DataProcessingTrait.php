@@ -16,7 +16,7 @@ trait DataProcessingTrait
             $data->first()->getTable() => $data->items()
         ];
         $response->currentPage = $data->currentPage();
-        $response->perPpage = $data->perPage();
+        $response->perPage = $data->perPage();
         $response->total = $data->total();
 
         return response()->json($response, 200);
@@ -27,10 +27,12 @@ trait DataProcessingTrait
         $response = new ResponseModel();
 
         $finishVerb = $this->finishVerb($alias->article);
-        $response->entity = [];
-        $response->message = $alias->name->singular . " não encontrad$finishVerb";
+        $response->entity = [
+            $alias->name->singular => []
+        ];
+        $response->message = $alias->name->singular . " não encontrad$finishVerb.";
         $response->currentPage = $data->currentPage();
-        $response->perPpage = $data->perPage();
+        $response->perPage = $data->perPage();
         $response->total = $data->total();
 
         return response()->json($response, $code);
@@ -42,7 +44,7 @@ trait DataProcessingTrait
 
         $finishVerb = $this->finishVerb($alias->article);
         $response->entity = [];
-        $response->message = $alias->name->singular . " não encontrad$finishVerb";
+        $response->message = $alias->name->singular . " não encontrad$finishVerb.";
 
         return response()->json($response, $code);
     }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MessagesTraits;
 use App\User;
 use Carbon\Carbon;
+use Firebase\Auth\Token\Exception\InvalidToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -98,7 +99,6 @@ class AuthController extends Controller
         $rules = [
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed'
         ];
 
         $validator = Validator::make($request->all(), $rules, $this->getArrayMessagesValidate());
@@ -109,7 +109,7 @@ class AuthController extends Controller
         $user = new User([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password'))
+            'firebase_uid' => $request->input('firebase_uid'),
         ]);
 
         $user->save();
@@ -165,29 +165,41 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $rules = [
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-            'remember_me' => 'boolean'
-        ];
+        $auth = app('firebase.auth');
 
-        $validator = Validator::make($request->all(), $rules, $this->getArrayMessagesValidate());
-        if ($validator->fails()) {
-            return $validator->getMessageBag();
-        }
+        $token = $request->headers->get('TokenApiGoogle');
 
-        $credentials = request(['email', 'password', 'active' => 1]);
-        if (!Auth::attempt($credentials)) {
+        try {
+            $verifiedIdToken = $auth->verifyIdToken($token);
+
+        } catch (\InvalidArgumentException $e) {
             return response()->json([
-                'message' => 'Usuário ou senha inválido.'
+                'message' => 'Unauthorized - Can\'t parse the token: ' . $e->getMessage()
+            ], 401);
+        } catch (InvalidToken $e) {
+            return response()->json([
+                'message' => 'Unauthorized - Token is invalide: ' . $e->getMessage()
             ], 401);
         }
 
-        $user = $request->user();
+        $uid = $verifiedIdToken->getClaim('sub');
+
+        $user = User::where('firebase_uid', $uid)->first();
+
+        if ($user == null) {
+            $request->request->add(['firebase_uid' => $uid]);
+            $request->request->add(['name' => $verifiedIdToken->getClaim('email')]);
+            $request->request->add(['email' => $verifiedIdToken->getClaim('email')]);
+
+            $this->register($request);
+        }
+
+        $user = User::where('firebase_uid', $uid)->first();
+
         $createToken = $user->createToken('Token de Acesso');
         $token = $createToken->accessToken;
 
-        $createToken->token->expires_at = Carbon::now()->addHours(5);
+        $createToken->token->expires_at = Carbon::now()->addDays(30);
         if ($request->remember_me) {
             $createToken->token->expires_at = Carbon::now()->addDays(30);
         }

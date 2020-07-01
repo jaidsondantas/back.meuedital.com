@@ -2,8 +2,8 @@
 
 use App\Models\Country;
 use App\Services\QueryService;
-use App\State;
 use Illuminate\Database\Seeder;
+use \App\Models\State;
 
 class StateSeeder extends Seeder
 {

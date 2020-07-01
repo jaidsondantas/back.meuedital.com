@@ -9,7 +9,7 @@ class ResponseModel
     public $entity;
     public $message;
     public $total;
-    public $perPpage;
+    public $perPage;
     public $currentPage;
 }
 
