@@ -8,11 +8,11 @@ use App\Actions\DeleteMultipleActionTrait;
 use App\Actions\FindAllActionTrait;
 use App\Actions\FindIdActionTrait;
 use App\Actions\UpdateActionTrait;
-use App\Models\State;
+use App\Models\StatusPublicTenderNotice;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class StateController extends Controller
+class StatusPublicTenderNoticeController extends Controller
 {
     use FindAllActionTrait;
     use FindIdActionTrait;
@@ -23,9 +23,9 @@ class StateController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/state",
-     *     tags={"State"},
-     *     summary="GET State",
+     *     path="/status_public_tender_notice",
+     *     tags={"StatusPublicTenderNotice"},
+     *     summary="GET StatusPublicTenderNotice",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -76,14 +76,14 @@ class StateController extends Controller
      */
     public function find(Request $request)
     {
-        return $this->findAll(new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->findAll(new StatusPublicTenderNotice(), $request, StatusPublicTenderNotice::getAliasEntity(StatusPublicTenderNotice::ALIAS, 'M'));
     }
 
     /**
      * @OA\Get(
-     *     path="/state/1",
-     *     tags={"State"},
-     *     summary="GET State",
+     *     path="/status_public_tender_notice/1",
+     *     tags={"StatusPublicTenderNotice"},
+     *     summary="GET StatusPublicTenderNotice",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -120,24 +120,24 @@ class StateController extends Controller
      */
     public function show($id, Request $request)
     {
-        return $this->findId($id, new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->findId($id, new StatusPublicTenderNotice(), $request, StatusPublicTenderNotice::getAliasEntity(StatusPublicTenderNotice::ALIAS, 'M'));
     }
 
 
     /**
      * @OA\Tag(
-     *     name="State",
+     *     name="StatusPublicTenderNotice",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/state"
+     *         url="http://autopecadelivery.com/api/status_public_tender_notice"
      *     )
      * )
      * @OA\Post(
-     *     path="/state",
-     *     summary="Registro de um novo Paíz",
+     *     path="/status_public_tender_notice",
+     *     summary="Registro de um novo Status",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"StatusPublicTenderNotice"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -176,7 +176,7 @@ class StateController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/StateStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/StatusPublicTenderNoticeStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -194,23 +194,23 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->create(new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->create(new StatusPublicTenderNotice(), $request, StatusPublicTenderNotice::getAliasEntity(StatusPublicTenderNotice::ALIAS, 'M'));
     }
 
     /**
      * @OA\Tag(
-     *     name="State",
+     *     name="StatusPublicTenderNotice",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/state"
+     *         url="http://autopecadelivery.com/api/status_public_tender_notice"
      *     )
      * )
      * @OA\Put(
-     *     path="/state/1",
-     *     summary="Atualizando Paíz",
+     *     path="/status_public_tender_notice/1",
+     *     summary="Atualizando Status",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"StatusPublicTenderNotice"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -249,7 +249,7 @@ class StateController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/StateStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/StatusPublicTenderNoticeStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -268,15 +268,15 @@ class StateController extends Controller
      */
     public function updateEntity(Request $request, $id)
     {
-        return $this->update($id, new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->update($id, new StatusPublicTenderNotice(), $request, StatusPublicTenderNotice::getAliasEntity(StatusPublicTenderNotice::ALIAS, 'M'));
     }
 
     /**
      * @OA\Delete(
-     *     path="/state/1",
-     *     summary="Deletando Paíz",
+     *     path="/status_public_tender_notice/1",
+     *     summary="Deletando Status",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"StatusPublicTenderNotice"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -307,15 +307,15 @@ class StateController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        return $this->delete($id, new State(), State::getAliasEntity(State::ALIAS, 'M'), $request);
+        return $this->delete($id, new StatusPublicTenderNotice(), StatusPublicTenderNotice::getAliasEntity(StatusPublicTenderNotice::ALIAS, 'M'), $request);
     }
 
     /**
      * @OA\Delete(
-     *     path="/state",
-     *     summary="Deletando Paíz",
+     *     path="/status_public_tender_notice",
+     *     summary="Deletando Status",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"StatusPublicTenderNotice"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -347,6 +347,6 @@ class StateController extends Controller
      */
     public function destroyMultiple(Request $request)
     {
-        return $this->deleteMultiple($request, State::class, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->deleteMultiple($request, StatusPublicTenderNotice::class, StatusPublicTenderNotice::getAliasEntity(StatusPublicTenderNotice::ALIAS, 'M'));
     }
 }

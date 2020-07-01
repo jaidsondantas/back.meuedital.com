@@ -8,11 +8,11 @@ use App\Actions\DeleteMultipleActionTrait;
 use App\Actions\FindAllActionTrait;
 use App\Actions\FindIdActionTrait;
 use App\Actions\UpdateActionTrait;
-use App\Models\State;
+use App\Models\PublicTenderNotice;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class StateController extends Controller
+class PublicTenderNoticeController extends Controller
 {
     use FindAllActionTrait;
     use FindIdActionTrait;
@@ -23,9 +23,9 @@ class StateController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/state",
-     *     tags={"State"},
-     *     summary="GET State",
+     *     path="/public_tender_notice",
+     *     tags={"PublicTenderNotice"},
+     *     summary="GET PublicTenderNotice",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -76,14 +76,14 @@ class StateController extends Controller
      */
     public function find(Request $request)
     {
-        return $this->findAll(new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->findAll(new PublicTenderNotice(), $request, PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'));
     }
 
     /**
      * @OA\Get(
-     *     path="/state/1",
-     *     tags={"State"},
-     *     summary="GET State",
+     *     path="/public_tender_notice/1",
+     *     tags={"PublicTenderNotice"},
+     *     summary="GET PublicTenderNotice",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -120,24 +120,24 @@ class StateController extends Controller
      */
     public function show($id, Request $request)
     {
-        return $this->findId($id, new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->findId($id, new PublicTenderNotice(), $request, PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'));
     }
 
 
     /**
      * @OA\Tag(
-     *     name="State",
+     *     name="PublicTenderNotice",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/state"
+     *         url="http://autopecadelivery.com/api/public_tender_notice"
      *     )
      * )
      * @OA\Post(
-     *     path="/state",
-     *     summary="Registro de um novo Paíz",
+     *     path="/public_tender_notice",
+     *     summary="Registro de um novo Editais",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"PublicTenderNotice"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -154,18 +154,38 @@ class StateController extends Controller
      *                     property="name",
      *                     type="string"
      *                 ),
-     *                 @OA\Property(
-     *                     property="initials",
+     *                  @OA\Property(
+     *                     property="description",
      *                     type="string"
      *                 ),
-     *                @OA\Property(
-     *                     property="country_id",
+     *                  @OA\Property(
+     *                     property="year",
+     *                     type="string"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="organ_id",
+     *                     type="string"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="examination_board_id",
+     *                     type="string"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="status_public_tender_notice_id",
+     *                     type="string"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="created_by",
      *                     type="string"
      *                 ),
      *                 example={
-     *                  "name": "Miami",
-     *                  "initials": "MI",
-     *                  "country_id": 1,
+     *                  "name": "Concurso SEDF",
+     *                  "description": "Pense um pouco e responda: quantas janelas de oportunidades de fato significativas abrem-se durante uma vida?",
+     *                  "year": "2020",
+     *                  "organ_id": 2,
+     *                  "examination_board_id": 1,
+     *                  "status_public_tender_notice_id": 1,
+     *                  "created_by": 2,
      *                      }
      *             )
      *         )
@@ -176,7 +196,7 @@ class StateController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/StateStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/PublicTenderNoticeStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -194,23 +214,23 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->create(new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->create(new PublicTenderNotice(), $request, PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'));
     }
 
     /**
      * @OA\Tag(
-     *     name="State",
+     *     name="PublicTenderNotice",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/state"
+     *         url="http://autopecadelivery.com/api/public_tender_notice"
      *     )
      * )
      * @OA\Put(
-     *     path="/state/1",
-     *     summary="Atualizando Paíz",
+     *     path="/public_tender_notice/1",
+     *     summary="Atualizando Editais",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"PublicTenderNotice"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -227,18 +247,38 @@ class StateController extends Controller
      *                     property="name",
      *                     type="string"
      *                 ),
-     *                 @OA\Property(
-     *                     property="initials",
+     *                  @OA\Property(
+     *                     property="description",
      *                     type="string"
      *                 ),
-     *                @OA\Property(
-     *                     property="country_id",
+     *                  @OA\Property(
+     *                     property="year",
+     *                     type="string"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="organ_id",
+     *                     type="string"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="examination_board_id",
+     *                     type="string"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="status_public_tender_notice_id",
+     *                     type="string"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="created_by",
      *                     type="string"
      *                 ),
      *                 example={
-     *                  "name": "Miami",
-     *                  "initials": "MI",
-     *                  "country_id": 1,
+     *                  "name": "Concurso SEDF",
+     *                  "description": "Pense um pouco e responda: quantas janelas de oportunidades de fato significativas abrem-se durante uma vida?",
+     *                  "year": "2020",
+     *                  "organ_id": 2,
+     *                  "examination_board_id": 1,
+     *                  "status_public_tender_notice_id": 1,
+     *                  "created_by": 2,
      *                      }
      *             )
      *         )
@@ -249,7 +289,7 @@ class StateController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/StateStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/PublicTenderNoticeStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -268,15 +308,15 @@ class StateController extends Controller
      */
     public function updateEntity(Request $request, $id)
     {
-        return $this->update($id, new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->update($id, new PublicTenderNotice(), $request, PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'));
     }
 
     /**
      * @OA\Delete(
-     *     path="/state/1",
-     *     summary="Deletando Paíz",
+     *     path="/public_tender_notice/1",
+     *     summary="Deletando Editais",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"PublicTenderNotice"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -307,15 +347,15 @@ class StateController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        return $this->delete($id, new State(), State::getAliasEntity(State::ALIAS, 'M'), $request);
+        return $this->delete($id, new PublicTenderNotice(), PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'), $request);
     }
 
     /**
      * @OA\Delete(
-     *     path="/state",
-     *     summary="Deletando Paíz",
+     *     path="/public_tender_notice",
+     *     summary="Deletando Editais",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"PublicTenderNotice"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -347,6 +387,6 @@ class StateController extends Controller
      */
     public function destroyMultiple(Request $request)
     {
-        return $this->deleteMultiple($request, State::class, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->deleteMultiple($request, PublicTenderNotice::class, PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'));
     }
 }

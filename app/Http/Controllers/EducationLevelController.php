@@ -8,11 +8,11 @@ use App\Actions\DeleteMultipleActionTrait;
 use App\Actions\FindAllActionTrait;
 use App\Actions\FindIdActionTrait;
 use App\Actions\UpdateActionTrait;
-use App\Models\State;
+use App\Models\EducationLevel;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class StateController extends Controller
+class EducationLevelController extends Controller
 {
     use FindAllActionTrait;
     use FindIdActionTrait;
@@ -23,9 +23,9 @@ class StateController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/state",
-     *     tags={"State"},
-     *     summary="GET State",
+     *     path="/education_level",
+     *     tags={"EducationLevel"},
+     *     summary="GET EducationLevel",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -76,14 +76,14 @@ class StateController extends Controller
      */
     public function find(Request $request)
     {
-        return $this->findAll(new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->findAll(new EducationLevel(), $request, EducationLevel::getAliasEntity(EducationLevel::ALIAS, 'M'));
     }
 
     /**
      * @OA\Get(
-     *     path="/state/1",
-     *     tags={"State"},
-     *     summary="GET State",
+     *     path="/education_level/1",
+     *     tags={"EducationLevel"},
+     *     summary="GET EducationLevel",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -120,24 +120,24 @@ class StateController extends Controller
      */
     public function show($id, Request $request)
     {
-        return $this->findId($id, new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->findId($id, new EducationLevel(), $request, EducationLevel::getAliasEntity(EducationLevel::ALIAS, 'M'));
     }
 
 
     /**
      * @OA\Tag(
-     *     name="State",
+     *     name="EducationLevel",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/state"
+     *         url="http://autopecadelivery.com/api/education_level"
      *     )
      * )
      * @OA\Post(
-     *     path="/state",
-     *     summary="Registro de um novo Paíz",
+     *     path="/education_level",
+     *     summary="Registro de um novo Nível de Educação",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"EducationLevel"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -154,18 +154,8 @@ class StateController extends Controller
      *                     property="name",
      *                     type="string"
      *                 ),
-     *                 @OA\Property(
-     *                     property="initials",
-     *                     type="string"
-     *                 ),
-     *                @OA\Property(
-     *                     property="country_id",
-     *                     type="string"
-     *                 ),
      *                 example={
-     *                  "name": "Miami",
-     *                  "initials": "MI",
-     *                  "country_id": 1,
+     *                  "name": "Superior",
      *                      }
      *             )
      *         )
@@ -176,7 +166,7 @@ class StateController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/StateStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/EducationLevelStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -194,23 +184,23 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->create(new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->create(new EducationLevel(), $request, EducationLevel::getAliasEntity(EducationLevel::ALIAS, 'M'));
     }
 
     /**
      * @OA\Tag(
-     *     name="State",
+     *     name="EducationLevel",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/state"
+     *         url="http://autopecadelivery.com/api/education_level"
      *     )
      * )
      * @OA\Put(
-     *     path="/state/1",
-     *     summary="Atualizando Paíz",
+     *     path="/education_level/1",
+     *     summary="Atualizando Nível de Educação",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"EducationLevel"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -227,18 +217,8 @@ class StateController extends Controller
      *                     property="name",
      *                     type="string"
      *                 ),
-     *                 @OA\Property(
-     *                     property="initials",
-     *                     type="string"
-     *                 ),
-     *                @OA\Property(
-     *                     property="country_id",
-     *                     type="string"
-     *                 ),
      *                 example={
-     *                  "name": "Miami",
-     *                  "initials": "MI",
-     *                  "country_id": 1,
+     *                  "name": "Superior",
      *                      }
      *             )
      *         )
@@ -249,7 +229,7 @@ class StateController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/StateStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/EducationLevelStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -268,15 +248,15 @@ class StateController extends Controller
      */
     public function updateEntity(Request $request, $id)
     {
-        return $this->update($id, new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->update($id, new EducationLevel(), $request, EducationLevel::getAliasEntity(EducationLevel::ALIAS, 'M'));
     }
 
     /**
      * @OA\Delete(
-     *     path="/state/1",
-     *     summary="Deletando Paíz",
+     *     path="/education_level/1",
+     *     summary="Deletando Nível de Educação",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"EducationLevel"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -307,15 +287,15 @@ class StateController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        return $this->delete($id, new State(), State::getAliasEntity(State::ALIAS, 'M'), $request);
+        return $this->delete($id, new EducationLevel(), EducationLevel::getAliasEntity(EducationLevel::ALIAS, 'M'), $request);
     }
 
     /**
      * @OA\Delete(
-     *     path="/state",
-     *     summary="Deletando Paíz",
+     *     path="/education_level",
+     *     summary="Deletando Nível de Educação",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"EducationLevel"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -347,6 +327,6 @@ class StateController extends Controller
      */
     public function destroyMultiple(Request $request)
     {
-        return $this->deleteMultiple($request, State::class, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->deleteMultiple($request, EducationLevel::class, EducationLevel::getAliasEntity(EducationLevel::ALIAS, 'M'));
     }
 }

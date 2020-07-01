@@ -8,11 +8,11 @@ use App\Actions\DeleteMultipleActionTrait;
 use App\Actions\FindAllActionTrait;
 use App\Actions\FindIdActionTrait;
 use App\Actions\UpdateActionTrait;
-use App\Models\State;
+use App\Models\OrganScope;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class StateController extends Controller
+class OrganScopeController extends Controller
 {
     use FindAllActionTrait;
     use FindIdActionTrait;
@@ -23,9 +23,9 @@ class StateController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/state",
-     *     tags={"State"},
-     *     summary="GET State",
+     *     path="/organ_scope",
+     *     tags={"OrganScope"},
+     *     summary="GET OrganScope",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -76,14 +76,14 @@ class StateController extends Controller
      */
     public function find(Request $request)
     {
-        return $this->findAll(new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->findAll(new OrganScope(), $request, OrganScope::getAliasEntity(OrganScope::ALIAS, 'M'));
     }
 
     /**
      * @OA\Get(
-     *     path="/state/1",
-     *     tags={"State"},
-     *     summary="GET State",
+     *     path="/organ_scope/1",
+     *     tags={"OrganScope"},
+     *     summary="GET OrganScope",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -120,24 +120,24 @@ class StateController extends Controller
      */
     public function show($id, Request $request)
     {
-        return $this->findId($id, new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->findId($id, new OrganScope(), $request, OrganScope::getAliasEntity(OrganScope::ALIAS, 'M'));
     }
 
 
     /**
      * @OA\Tag(
-     *     name="State",
+     *     name="OrganScope",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/state"
+     *         url="http://autopecadelivery.com/api/organ_scope"
      *     )
      * )
      * @OA\Post(
-     *     path="/state",
-     *     summary="Registro de um novo Paíz",
+     *     path="/organ_scope",
+     *     summary="Registro de um novo Scope do orgão",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"OrganScope"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -154,18 +154,8 @@ class StateController extends Controller
      *                     property="name",
      *                     type="string"
      *                 ),
-     *                 @OA\Property(
-     *                     property="initials",
-     *                     type="string"
-     *                 ),
-     *                @OA\Property(
-     *                     property="country_id",
-     *                     type="string"
-     *                 ),
      *                 example={
      *                  "name": "Miami",
-     *                  "initials": "MI",
-     *                  "country_id": 1,
      *                      }
      *             )
      *         )
@@ -176,7 +166,7 @@ class StateController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/StateStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/OrganScopeStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -194,23 +184,23 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->create(new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->create(new OrganScope(), $request, OrganScope::getAliasEntity(OrganScope::ALIAS, 'M'));
     }
 
     /**
      * @OA\Tag(
-     *     name="State",
+     *     name="OrganScope",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/state"
+     *         url="http://autopecadelivery.com/api/organ_scope"
      *     )
      * )
      * @OA\Put(
-     *     path="/state/1",
-     *     summary="Atualizando Paíz",
+     *     path="/organ_scope/1",
+     *     summary="Atualizando Scope do orgão",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"OrganScope"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -227,18 +217,8 @@ class StateController extends Controller
      *                     property="name",
      *                     type="string"
      *                 ),
-     *                 @OA\Property(
-     *                     property="initials",
-     *                     type="string"
-     *                 ),
-     *                @OA\Property(
-     *                     property="country_id",
-     *                     type="string"
-     *                 ),
      *                 example={
      *                  "name": "Miami",
-     *                  "initials": "MI",
-     *                  "country_id": 1,
      *                      }
      *             )
      *         )
@@ -249,7 +229,7 @@ class StateController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/StateStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/OrganScopeStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -268,15 +248,15 @@ class StateController extends Controller
      */
     public function updateEntity(Request $request, $id)
     {
-        return $this->update($id, new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->update($id, new OrganScope(), $request, OrganScope::getAliasEntity(OrganScope::ALIAS, 'M'));
     }
 
     /**
      * @OA\Delete(
-     *     path="/state/1",
-     *     summary="Deletando Paíz",
+     *     path="/organ_scope/1",
+     *     summary="Deletando Scope do orgão",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"OrganScope"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -307,15 +287,15 @@ class StateController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        return $this->delete($id, new State(), State::getAliasEntity(State::ALIAS, 'M'), $request);
+        return $this->delete($id, new OrganScope(), OrganScope::getAliasEntity(OrganScope::ALIAS, 'M'), $request);
     }
 
     /**
      * @OA\Delete(
-     *     path="/state",
-     *     summary="Deletando Paíz",
+     *     path="/organ_scope",
+     *     summary="Deletando Scope do orgão",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"OrganScope"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -347,6 +327,6 @@ class StateController extends Controller
      */
     public function destroyMultiple(Request $request)
     {
-        return $this->deleteMultiple($request, State::class, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->deleteMultiple($request, OrganScope::class, OrganScope::getAliasEntity(OrganScope::ALIAS, 'M'));
     }
 }

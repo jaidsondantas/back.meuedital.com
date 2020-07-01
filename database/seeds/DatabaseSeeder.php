@@ -15,5 +15,14 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(CountrySeeder::class);
         $this->call(StateSeeder::class);
+        $this->call(ExaminationBoardSeeder::class);
+        $this->call(OrganScopeSeeder::class);
+        $this->call(TypeOrganSeeder::class);
+        $this->call(OrganSeeder::class);
+        $this->call(StatusPublicTenderNoticeSeeder::class);
+        $this->call(PublicTenderNoticeSeeder::class);
+        $this->call(EducationLevelSeeder::class);
+        $this->call(PublicTenderNoticeEducationLevelSeeder::class);
+        $this->call(PublicTenderNoticeXStateSeeder::class);
     }
 }

@@ -75,7 +75,7 @@ trait DataProcessingTrait
         $finishVerb = $this->finishVerb($alias->article);
 
         $response = new ResponseModel();
-        $response->message = $alias->name->plural . " foram deletad$finishVerb"."s com sucesso.";
+        $response->message = $alias->name->plural . " foram deletad$finishVerb" . "s com sucesso.";
 
         return response()->json($response, 200);
     }

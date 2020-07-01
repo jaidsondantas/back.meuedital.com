@@ -1,9 +1,8 @@
 <?php
 
-use App\Models\Country;
+use App\Models\State;
 use App\Services\QueryService;
 use Illuminate\Database\Seeder;
-use \App\Models\State;
 
 class StateSeeder extends Seeder
 {

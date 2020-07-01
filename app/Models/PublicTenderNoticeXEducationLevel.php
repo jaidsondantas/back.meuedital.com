@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Validation\Rule;
-
-class State extends BaseModel
+class PublicTenderNoticeXEducationLevel extends BaseModel
 {
     const ALIAS = ['Estado', 'Estados'];
 
@@ -12,7 +10,7 @@ class State extends BaseModel
     {
         parent::__construct($attributes);
 
-        $this->setPopulate(['country']);
+        $this->setPopulate([]);
     }
 
     /**
@@ -26,14 +24,10 @@ class State extends BaseModel
     public function getRules($id = 0)
     {
         return [
-            'name' => ['required', 'string', Rule::unique('states')->ignore($id)],
-            'initials' => ['required', 'string', Rule::unique('states')->ignore($id), 'max:5'],
-            'country_id' => ['required', Rule::exists('countries', 'id')]
+            'education_level_id' => ['required'],
+            'public_tender_notice_id' => ['required'],
         ];
     }
 
-    public function country()
-    {
-        return $this->belongsTo(Country::class);
-    }
+
 }

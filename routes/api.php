@@ -23,10 +23,17 @@ Route::group([
 Route::group(['middleware' => 'auth:api'], function () {
     RouteService::createRoute('country', 'CountryController', BaseModel::getActions());
     RouteService::createRoute('state', 'StateController', BaseModel::getActions());
+    RouteService::createRoute('examination_board', 'ExaminationBoardController', BaseModel::getActions());
+    RouteService::createRoute('organ_scope', 'OrganScopeController', BaseModel::getActions());
+    RouteService::createRoute('type_organ', 'TypeOrganController', BaseModel::getActions());
+    RouteService::createRoute('organ', 'OrganController', BaseModel::getActions());
+    RouteService::createRoute('status_public_tender_notice', 'StatusPublicTenderNoticeController', BaseModel::getActions());
+    RouteService::createRoute('public_tender_notice', 'PublicTenderNoticeController', BaseModel::getActions());
+    RouteService::createRoute('education_level', 'EducationLevelController', BaseModel::getActions());
+    RouteService::createRoute('public_tender_notice_education_level', 'PublicTenderNoticeXEducationLevelController', BaseModel::getActions());
+    RouteService::createRoute('public_tender_notice_state', 'PublicTenderNoticeXStateController', BaseModel::getActions());
 });
-//
-//RouteService::createRoute('country', 'CountryController', BaseModel::getActions(['find']));
-//RouteService::createRoute('state', 'StateController', BaseModel::getActions(['find']));
+
 
 
 

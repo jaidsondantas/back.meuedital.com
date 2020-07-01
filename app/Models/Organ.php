@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Validation\Rule;
 
-class State extends BaseModel
+class Organ extends BaseModel
 {
-    const ALIAS = ['Estado', 'Estados'];
+    const ALIAS = ['Orgão', 'Orgãos'];
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
 
-        $this->setPopulate(['country']);
+        $this->setPopulate(['typeOrgan', 'organScope']);
     }
 
     /**
@@ -26,14 +26,17 @@ class State extends BaseModel
     public function getRules($id = 0)
     {
         return [
-            'name' => ['required', 'string', Rule::unique('states')->ignore($id)],
-            'initials' => ['required', 'string', Rule::unique('states')->ignore($id), 'max:5'],
-            'country_id' => ['required', Rule::exists('countries', 'id')]
+            'name' => ['required', 'string', Rule::unique('examination_boards')->ignore($id)],
         ];
     }
 
-    public function country()
+    public function typeOrgan()
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(TypeOrgan::class);
+    }
+
+    public function organScope()
+    {
+        return $this->belongsTo(OrganScope::class);
     }
 }

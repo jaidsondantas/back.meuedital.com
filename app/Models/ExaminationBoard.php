@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Validation\Rule;
 
-class State extends BaseModel
+class ExaminationBoard extends BaseModel
 {
-    const ALIAS = ['Estado', 'Estados'];
+    const ALIAS = ['Banca', 'Bancas'];
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
 
-        $this->setPopulate(['country']);
+        $this->setPopulate(['publicTenderNotice']);
     }
 
     /**
@@ -26,14 +26,13 @@ class State extends BaseModel
     public function getRules($id = 0)
     {
         return [
-            'name' => ['required', 'string', Rule::unique('states')->ignore($id)],
-            'initials' => ['required', 'string', Rule::unique('states')->ignore($id), 'max:5'],
-            'country_id' => ['required', Rule::exists('countries', 'id')]
+            'name' => ['required', 'string', Rule::unique('examination_boards')->ignore($id)],
         ];
     }
 
-    public function country()
+    public function publicTenderNotice()
     {
-        return $this->belongsTo(Country::class);
+        return $this->hasMany(PublicTenderNotice::class);
     }
+
 }

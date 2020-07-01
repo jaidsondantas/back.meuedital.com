@@ -8,11 +8,11 @@ use App\Actions\DeleteMultipleActionTrait;
 use App\Actions\FindAllActionTrait;
 use App\Actions\FindIdActionTrait;
 use App\Actions\UpdateActionTrait;
-use App\Models\State;
+use App\Models\PublicTenderNoticeXEducationLevel;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class StateController extends Controller
+class PublicTenderNoticeXEducationLevelController extends Controller
 {
     use FindAllActionTrait;
     use FindIdActionTrait;
@@ -23,9 +23,9 @@ class StateController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/state",
-     *     tags={"State"},
-     *     summary="GET State",
+     *     path="/public_tender_notice_education_level",
+     *     tags={"PublicTenderNoticeXEducationLevel"},
+     *     summary="GET PublicTenderNoticeXEducationLevel",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -76,14 +76,14 @@ class StateController extends Controller
      */
     public function find(Request $request)
     {
-        return $this->findAll(new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->findAll(new PublicTenderNoticeXEducationLevel(), $request, PublicTenderNoticeXEducationLevel::getAliasEntity(PublicTenderNoticeXEducationLevel::ALIAS, 'M'));
     }
 
     /**
      * @OA\Get(
-     *     path="/state/1",
-     *     tags={"State"},
-     *     summary="GET State",
+     *     path="/public_tender_notice_education_level/1",
+     *     tags={"PublicTenderNoticeXEducationLevel"},
+     *     summary="GET PublicTenderNoticeXEducationLevel",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -120,24 +120,24 @@ class StateController extends Controller
      */
     public function show($id, Request $request)
     {
-        return $this->findId($id, new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->findId($id, new PublicTenderNoticeXEducationLevel(), $request, PublicTenderNoticeXEducationLevel::getAliasEntity(PublicTenderNoticeXEducationLevel::ALIAS, 'M'));
     }
 
 
     /**
      * @OA\Tag(
-     *     name="State",
+     *     name="PublicTenderNoticeXEducationLevel",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/state"
+     *         url="http://autopecadelivery.com/api/public_tender_notice_education_level"
      *     )
      * )
      * @OA\Post(
-     *     path="/state",
-     *     summary="Registro de um novo Paíz",
+     *     path="/public_tender_notice_education_level",
+     *     summary="Registro de um novo Edital e Nivel",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"PublicTenderNoticeXEducationLevel"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -176,7 +176,7 @@ class StateController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/StateStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/PublicTenderNoticeXEducationLevelStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -194,23 +194,23 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->create(new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->create(new PublicTenderNoticeXEducationLevel(), $request, PublicTenderNoticeXEducationLevel::getAliasEntity(PublicTenderNoticeXEducationLevel::ALIAS, 'M'));
     }
 
     /**
      * @OA\Tag(
-     *     name="State",
+     *     name="PublicTenderNoticeXEducationLevel",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/state"
+     *         url="http://autopecadelivery.com/api/public_tender_notice_education_level"
      *     )
      * )
      * @OA\Put(
-     *     path="/state/1",
-     *     summary="Atualizando Paíz",
+     *     path="/public_tender_notice_education_level/1",
+     *     summary="Atualizando Edital e Nivel",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"PublicTenderNoticeXEducationLevel"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -249,7 +249,7 @@ class StateController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/StateStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/PublicTenderNoticeXEducationLevelStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -268,15 +268,15 @@ class StateController extends Controller
      */
     public function updateEntity(Request $request, $id)
     {
-        return $this->update($id, new State(), $request, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->update($id, new PublicTenderNoticeXEducationLevel(), $request, PublicTenderNoticeXEducationLevel::getAliasEntity(PublicTenderNoticeXEducationLevel::ALIAS, 'M'));
     }
 
     /**
      * @OA\Delete(
-     *     path="/state/1",
-     *     summary="Deletando Paíz",
+     *     path="/public_tender_notice_education_level/1",
+     *     summary="Deletando Edital e Nivel",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"PublicTenderNoticeXEducationLevel"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -307,15 +307,15 @@ class StateController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        return $this->delete($id, new State(), State::getAliasEntity(State::ALIAS, 'M'), $request);
+        return $this->delete($id, new PublicTenderNoticeXEducationLevel(), PublicTenderNoticeXEducationLevel::getAliasEntity(PublicTenderNoticeXEducationLevel::ALIAS, 'M'), $request);
     }
 
     /**
      * @OA\Delete(
-     *     path="/state",
-     *     summary="Deletando Paíz",
+     *     path="/public_tender_notice_education_level",
+     *     summary="Deletando Edital e Nivel",
      *     operationId="store",
-     *     tags={"State"},
+     *     tags={"PublicTenderNoticeXEducationLevel"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -347,6 +347,6 @@ class StateController extends Controller
      */
     public function destroyMultiple(Request $request)
     {
-        return $this->deleteMultiple($request, State::class, State::getAliasEntity(State::ALIAS, 'M'));
+        return $this->deleteMultiple($request, PublicTenderNoticeXEducationLevel::class, PublicTenderNoticeXEducationLevel::getAliasEntity(PublicTenderNoticeXEducationLevel::ALIAS, 'M'));
     }
 }
