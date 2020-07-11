@@ -2,13 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
-
-class PublicTenderNoticeXState extends BaseModel
+class MyPublicNoticeTender extends BaseModel
 {
-    protected $table = 'public_tender_notice_x_states';
-
-    const ALIAS = ['Estado', 'Estados'];
+    const ALIAS = ['Meu Edital', 'Meu Editais'];
 
     public function __construct(array $attributes = [])
     {
@@ -25,13 +21,10 @@ class PublicTenderNoticeXState extends BaseModel
         return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
     }
 
-    public function getRules()
+    public function getRules($id = 0)
     {
         return [
-            'public_tender_notice_id' => ['required'],
-            'education_level_id' => ['required'],
         ];
     }
-
 
 }

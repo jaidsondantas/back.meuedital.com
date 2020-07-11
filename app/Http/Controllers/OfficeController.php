@@ -2,84 +2,331 @@
 
 namespace App\Http\Controllers;
 
-use App\Office;
+use App\Actions\CreateActionTrait;
+use App\Actions\DeleteActionTrait;
+use App\Actions\DeleteMultipleActionTrait;
+use App\Actions\FindAllActionTrait;
+use App\Actions\FindIdActionTrait;
+use App\Actions\UpdateActionTrait;
+use App\Models\Office;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class OfficeController extends Controller
 {
+    use FindAllActionTrait;
+    use FindIdActionTrait;
+    use CreateActionTrait;
+    use UpdateActionTrait;
+    use DeleteActionTrait;
+    use DeleteMultipleActionTrait;
+
     /**
+     * @OA\Get(
+     *     path="/office",
+     *     tags={"Office"},
+     *     summary="GET Office",
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/Authorization"
+     *     ),
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/order"
+     *     ),
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/limit"
+     *     ),
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/page"
+     *     ),
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/where"
+     *     ),
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/context"
+     *     ),
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/per_page"
+     *     ),
+     *      @OA\Parameter(
+     *          ref="#/components/parameters/populate"
+     *     ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Everything is fine"
+     *     ),
+     *     @OA\Response(
+     *         response="404",
+     *         description="Example not found"
+     *     ),
+     *     @OA\Response(
+     *          response=400,
+     *          description="Bad Request",
+     *          @OA\Schema(
+     *              type="object",
+     *              example={"code": 400, "message": "Bad Request"},
+     *              @OA\Property(property="code", type="integer", description="Error code"),
+     *              @OA\Property(property="message", type="string", description="Error description"),
+     *          ),
+     *      )
+     * )
+     *
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function index()
+    public function find(Request $request)
     {
-        //
+        return $this->findAll(new Office(), $request, Office::getAliasEntity(Office::ALIAS, 'M'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @OA\Get(
+     *     path="/office/1",
+     *     tags={"Office"},
+     *     summary="GET Office",
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/Authorization"
+     *     ),
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/context"
+     *     ),
+     *      @OA\Parameter(
+     *          ref="#/components/parameters/populate"
+     *     ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Everything is fine"
+     *     ),
+     *     @OA\Response(
+     *         response="404",
+     *         description="Example not found"
+     *     ),
+     *     @OA\Response(
+     *          response=400,
+     *          description="Bad Request",
+     *          @OA\Schema(
+     *              type="object",
+     *              example={"code": 400, "message": "Bad Request"},
+     *              @OA\Property(property="code", type="integer", description="Error code"),
+     *              @OA\Property(property="message", type="string", description="Error description"),
+     *          ),
+     *      )
+     * )
      *
-     * @return \Illuminate\Http\Response
+     * Display a listing of the resource.
+     * @param $id
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function create()
+    public function show($id, Request $request)
     {
-        //
+        return $this->findId($id, new Office(), $request, Office::getAliasEntity(Office::ALIAS, 'M'));
     }
 
+
     /**
-     * Store a newly created resource in storage.
+     * @OA\Tag(
+     *     name="Office",
+     *     description="Credentials object",
+     *     @OA\ExternalDocumentation(
+     *         description="Credentials object",
+     *         url="http://autopecadelivery.com/api/office"
+     *     )
+     * )
+     * @OA\Post(
+     *     path="/office",
+     *     summary="Registro de um novo Cargo",
+     *     operationId="store",
+     *     tags={"Office"},
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/Authorization"
+     *     ),
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/populate"
+     *     ),
+     *
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                  @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 example={
+     *                  "name": "Superior",
+     *                      }
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK"
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/OfficeStoreRequest")
+     *     ),
+     *     @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\Schema(
+     *          type="object",
+     *          example={"code": 400, "message": "Bad Request"},
+     *          @OA\Property(property="code", type="integer", description="Error code"),
+     *          @OA\Property(property="message", type="string", description="Error description"),
+     *          ),
+     *      )
+     * )
+     * @param Request $request
+     * @return null
      */
     public function store(Request $request)
     {
-        //
+        return $this->create(new Office(), $request, Office::getAliasEntity(Office::ALIAS, 'M'));
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Tag(
+     *     name="Office",
+     *     description="Credentials object",
+     *     @OA\ExternalDocumentation(
+     *         description="Credentials object",
+     *         url="http://autopecadelivery.com/api/office"
+     *     )
+     * )
+     * @OA\Put(
+     *     path="/office/1",
+     *     summary="Atualizando Cargo",
+     *     operationId="store",
+     *     tags={"Office"},
      *
-     * @param  \App\Office  $office
-     * @return \Illuminate\Http\Response
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/Authorization"
+     *     ),
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/populate"
+     *     ),
+     *
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                  @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 example={
+     *                  "name": "Superior",
+     *                      }
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK"
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/OfficeStoreRequest")
+     *     ),
+     *     @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\Schema(
+     *          type="object",
+     *          example={"code": 400, "message": "Bad Request"},
+     *          @OA\Property(property="code", type="integer", description="Error code"),
+     *          @OA\Property(property="message", type="string", description="Error description"),
+     *          ),
+     *      )
+     * )
+     * @param Request $request
+     * @param $id
+     * @return null
      */
-    public function show(Office $office)
+    public function updateEntity(Request $request, $id)
     {
-        //
+        return $this->update($id, new Office(), $request, Office::getAliasEntity(Office::ALIAS, 'M'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * @OA\Delete(
+     *     path="/office/1",
+     *     summary="Deletando Cargo",
+     *     operationId="store",
+     *     tags={"Office"},
      *
-     * @param  \App\Office  $office
-     * @return \Illuminate\Http\Response
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/Authorization"
+     *     ),
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/populate"
+     *     ),
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK"
+     *     ),
+     *     @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\Schema(
+     *          type="object",
+     *          example={"code": 400, "message": "Bad Request"},
+     *          @OA\Property(property="code", type="integer", description="Error code"),
+     *          @OA\Property(property="message", type="string", description="Error description"),
+     *          ),
+     *      )
+     * )
+     *
+     * @param $id
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function edit(Office $office)
+    public function destroy($id, Request $request)
     {
-        //
+        return $this->delete($id, new Office(), Office::getAliasEntity(Office::ALIAS, 'M'), $request);
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Delete(
+     *     path="/office",
+     *     summary="Deletando Cargo",
+     *     operationId="store",
+     *     tags={"Office"},
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Office  $office
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Office $office)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/Authorization"
+     *     ),
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/populate"
+     *     ),
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/where"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK"
+     *     ),
+     *     @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\Schema(
+     *          type="object",
+     *          example={"code": 400, "message": "Bad Request"},
+     *          @OA\Property(property="code", type="integer", description="Error code"),
+     *          @OA\Property(property="message", type="string", description="Error description"),
+     *          ),
+     *      )
+     * )
      *
-     * @param  \App\Office  $office
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function destroy(Office $office)
+    public function destroyMultiple(Request $request)
     {
-        //
+        return $this->deleteMultiple($request, Office::class, Office::getAliasEntity(Office::ALIAS, 'M'));
     }
 }

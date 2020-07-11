@@ -12,7 +12,7 @@ class PublicTenderNotice extends BaseModel
     {
         parent::__construct($attributes);
 
-        $this->setPopulate(['organ', 'examinationBoard', 'statusPublicTenderNotice', 'educationLevel', 'states']);
+        $this->setPopulate(['organ', 'examinationBoard', 'statusPublicTenderNotice', 'educationLevel', 'states', 'offices']);
     }
 
     /**
@@ -52,13 +52,18 @@ class PublicTenderNotice extends BaseModel
 
     public function educationLevel()
     {
-        return $this->belongsToMany(EducationLevel::class, 'public_tender_notice_x_education_levels', 'education_level_id', 'public_tender_notice_id');
+        return $this->belongsToMany(EducationLevel::class, 'public_tender_notice_x_education_levels', 'public_tender_notice_id', 'education_level_id');
     }
 
     public function states()
     {
-        return $this->belongsToMany(State::class, 'public_tender_notice_x_states', 'state_id', 'public_tender_notice_id');
+        return $this->belongsToMany(State::class, 'public_tender_notice_x_states')
+            ->withPivot('public_tender_notice_id');
     }
 
+    public function offices()
+    {
+        return $this->belongsToMany(Office::class, 'public_tender_notice_x_offices', 'public_tender_notice_id', 'office_id');
+    }
 
 }

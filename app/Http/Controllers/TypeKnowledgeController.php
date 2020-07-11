@@ -8,11 +8,11 @@ use App\Actions\DeleteMultipleActionTrait;
 use App\Actions\FindAllActionTrait;
 use App\Actions\FindIdActionTrait;
 use App\Actions\UpdateActionTrait;
-use App\Models\PublicTenderNotice;
+use App\Models\TypeKnowledge;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class PublicTenderNoticeController extends Controller
+class TypeKnowledgeController extends Controller
 {
     use FindAllActionTrait;
     use FindIdActionTrait;
@@ -23,9 +23,9 @@ class PublicTenderNoticeController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/public_tender_notice",
-     *     tags={"PublicTenderNotice"},
-     *     summary="GET PublicTenderNotice",
+     *     path="/type_knowledge",
+     *     tags={"TypeKnowledge"},
+     *     summary="GET TypeKnowledge",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -76,35 +76,14 @@ class PublicTenderNoticeController extends Controller
      */
     public function find(Request $request)
     {
-        return $this->findAll(new PublicTenderNotice(), $request, PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'));
-//        $model = new PublicTenderNotice();
-//
-//        $parameters = $this->getParameters($request, $model);
-//
-//        $keyOrder = $this->getKeyOrder($parameters->order);
-//
-//        $data = $model::with($parameters->populate)
-//            ->when($parameters->where, function ($query) use ($parameters) {
-//                $andWhere = $parameters->where['and'];
-//                $orWhere = $parameters->where['or'];
-//                $this->createAndWhere($andWhere, $query);
-//                $this->createOrWhere($orWhere, $query);
-//            })
-//            ->orderBy($keyOrder, $parameters->order[$keyOrder])
-//            ->paginate($parameters->per_page);
-//
-//        if (count($data) > 0) {
-//            return $this->responseFindAll($data);
-//        } else {
-//            return $this->responseNotFoundAll($data, $alias, 400);
-//        }
+        return $this->findAll(new TypeKnowledge(), $request, TypeKnowledge::getAliasEntity(TypeKnowledge::ALIAS, 'M'));
     }
 
     /**
      * @OA\Get(
-     *     path="/public_tender_notice/1",
-     *     tags={"PublicTenderNotice"},
-     *     summary="GET PublicTenderNotice",
+     *     path="/type_knowledge/1",
+     *     tags={"TypeKnowledge"},
+     *     summary="GET TypeKnowledge",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -141,24 +120,24 @@ class PublicTenderNoticeController extends Controller
      */
     public function show($id, Request $request)
     {
-        return $this->findId($id, new PublicTenderNotice(), $request, PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'));
+        return $this->findId($id, new TypeKnowledge(), $request, TypeKnowledge::getAliasEntity(TypeKnowledge::ALIAS, 'M'));
     }
 
 
     /**
      * @OA\Tag(
-     *     name="PublicTenderNotice",
+     *     name="TypeKnowledge",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/public_tender_notice"
+     *         url="http://autopecadelivery.com/api/type_knowledge"
      *     )
      * )
      * @OA\Post(
-     *     path="/public_tender_notice",
-     *     summary="Registro de um novo Editais",
+     *     path="/type_knowledge",
+     *     summary="Registro de um novo Tipo de conhecimento",
      *     operationId="store",
-     *     tags={"PublicTenderNotice"},
+     *     tags={"TypeKnowledge"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -175,38 +154,8 @@ class PublicTenderNoticeController extends Controller
      *                     property="name",
      *                     type="string"
      *                 ),
-     *                  @OA\Property(
-     *                     property="description",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="year",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="organ_id",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="examination_board_id",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="status_public_tender_notice_id",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="created_by",
-     *                     type="string"
-     *                 ),
      *                 example={
-     *                  "name": "Concurso SEDF",
-     *                  "description": "Pense um pouco e responda: quantas janelas de oportunidades de fato significativas abrem-se durante uma vida?",
-     *                  "year": "2020",
-     *                  "organ_id": 2,
-     *                  "examination_board_id": 1,
-     *                  "status_public_tender_notice_id": 1,
-     *                  "created_by": 2,
+     *                  "name": "Miami",
      *                      }
      *             )
      *         )
@@ -217,7 +166,7 @@ class PublicTenderNoticeController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/PublicTenderNoticeStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/TypeKnowledgeStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -235,23 +184,23 @@ class PublicTenderNoticeController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->create(new PublicTenderNotice(), $request, PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'));
+        return $this->create(new TypeKnowledge(), $request, TypeKnowledge::getAliasEntity(TypeKnowledge::ALIAS, 'M'));
     }
 
     /**
      * @OA\Tag(
-     *     name="PublicTenderNotice",
+     *     name="TypeKnowledge",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/public_tender_notice"
+     *         url="http://autopecadelivery.com/api/type_knowledge"
      *     )
      * )
      * @OA\Put(
-     *     path="/public_tender_notice/1",
-     *     summary="Atualizando Editais",
+     *     path="/type_knowledge/1",
+     *     summary="Atualizando Tipo de conhecimento",
      *     operationId="store",
-     *     tags={"PublicTenderNotice"},
+     *     tags={"TypeKnowledge"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -268,38 +217,8 @@ class PublicTenderNoticeController extends Controller
      *                     property="name",
      *                     type="string"
      *                 ),
-     *                  @OA\Property(
-     *                     property="description",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="year",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="organ_id",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="examination_board_id",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="status_public_tender_notice_id",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="created_by",
-     *                     type="string"
-     *                 ),
      *                 example={
-     *                  "name": "Concurso SEDF",
-     *                  "description": "Pense um pouco e responda: quantas janelas de oportunidades de fato significativas abrem-se durante uma vida?",
-     *                  "year": "2020",
-     *                  "organ_id": 2,
-     *                  "examination_board_id": 1,
-     *                  "status_public_tender_notice_id": 1,
-     *                  "created_by": 2,
+     *                  "name": "Miami",
      *                      }
      *             )
      *         )
@@ -310,7 +229,7 @@ class PublicTenderNoticeController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/PublicTenderNoticeStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/TypeKnowledgeStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -329,15 +248,15 @@ class PublicTenderNoticeController extends Controller
      */
     public function updateEntity(Request $request, $id)
     {
-        return $this->update($id, new PublicTenderNotice(), $request, PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'));
+        return $this->update($id, new TypeKnowledge(), $request, TypeKnowledge::getAliasEntity(TypeKnowledge::ALIAS, 'M'));
     }
 
     /**
      * @OA\Delete(
-     *     path="/public_tender_notice/1",
-     *     summary="Deletando Editais",
+     *     path="/type_knowledge/1",
+     *     summary="Deletando Tipo de conhecimento",
      *     operationId="store",
-     *     tags={"PublicTenderNotice"},
+     *     tags={"TypeKnowledge"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -368,15 +287,15 @@ class PublicTenderNoticeController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        return $this->delete($id, new PublicTenderNotice(), PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'), $request);
+        return $this->delete($id, new TypeKnowledge(), TypeKnowledge::getAliasEntity(TypeKnowledge::ALIAS, 'F'), $request);
     }
 
     /**
      * @OA\Delete(
-     *     path="/public_tender_notice",
-     *     summary="Deletando Editais",
+     *     path="/type_knowledge",
+     *     summary="Deletando Tipo de conhecimento",
      *     operationId="store",
-     *     tags={"PublicTenderNotice"},
+     *     tags={"TypeKnowledge"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -408,6 +327,6 @@ class PublicTenderNoticeController extends Controller
      */
     public function destroyMultiple(Request $request)
     {
-        return $this->deleteMultiple($request, PublicTenderNotice::class, PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'));
+        return $this->deleteMultiple($request, TypeKnowledge::class, TypeKnowledge::getAliasEntity(TypeKnowledge::ALIAS, 'M'));
     }
 }

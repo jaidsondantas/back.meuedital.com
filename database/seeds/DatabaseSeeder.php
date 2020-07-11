@@ -24,5 +24,12 @@ class DatabaseSeeder extends Seeder
         $this->call(EducationLevelSeeder::class);
         $this->call(PublicTenderNoticeEducationLevelSeeder::class);
         $this->call(PublicTenderNoticeXStateSeeder::class);
+        $this->call(OfficesSeeder::class);
+        $this->call(PublicTenderNoticeXOfficeSeeder::class);
+        $this->call(CategoryContentSeeder::class);
+        $this->call(ContentSeeder::class);
+        $this->call(TypeKnowledgeSeeder::class);
+        $this->call(NoticeContentsSeeder::class);
+        $this->call(NoticeContentOfficeSeeder::class);
     }
 }

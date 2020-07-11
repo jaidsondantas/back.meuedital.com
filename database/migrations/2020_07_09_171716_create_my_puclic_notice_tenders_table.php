@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOfficesTable extends Migration
+class CreateMyPuclicNoticeTendersTable extends Migration
 {
     use CommonMigration;
     /**
@@ -15,11 +15,16 @@ class CreateOfficesTable extends Migration
      */
     public function up()
     {
-        Schema::create('offices', function (Blueprint $table) {
+        Schema::create('my_public_notice_tenders', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
             $table->bigIncrements('id');
-            $table->string('name');
+
+            $table->bigInteger('candidate_id')->unsigned();
+            $table->foreign('candidate_id')->references('id')->on('candidates');
+
+            $table->bigInteger('public_tender_notice_id')->unsigned()->nullable();
+            $table->foreign('public_tender_notice_id')->references('id')->on('public_tender_notices');
 
             $this->setUsersBy($table);
             $this->timestampsSoftDeletes($table);
@@ -33,6 +38,6 @@ class CreateOfficesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offices');
+        Schema::dropIfExists('my_public_notice_tenders');
     }
 }

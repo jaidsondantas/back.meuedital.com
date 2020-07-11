@@ -40,7 +40,12 @@ trait QueryServiceTrait
             $operator = $operatorAndValue->first();
             $value = $operatorAndValue->last();
             $operator = $this->toCompareOperator($operator);
-            $query->where(key($andWhere), $operator, $value);
+            if($operator == 'in'){
+                $value = explode(',', $value);
+                $query->whereIn(key($andWhere), $value);
+            }else {
+                $query->where(key($andWhere), $operator, $value);
+            }
             next($andWhere);
         }
         return $query;

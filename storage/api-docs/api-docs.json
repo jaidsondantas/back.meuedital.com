@@ -123,6 +123,830 @@
                 }
             }
         },
+        "/candidate": {
+            "get": {
+                "tags": [
+                    "Candidate"
+                ],
+                "summary": "GET Candidate",
+                "operationId": "App\\Http\\Controllers\\CandidateController::find",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/order"
+                    },
+                    {
+                        "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Candidate"
+                ],
+                "summary": "Registro de um novo Candidato",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Candidate"
+                ],
+                "summary": "Deletando Candidato",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/candidate/1": {
+            "get": {
+                "tags": [
+                    "Candidate"
+                ],
+                "summary": "GET Candidate",
+                "operationId": "App\\Http\\Controllers\\CandidateController::show",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Candidate"
+                ],
+                "summary": "Atualizando Candidato",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Candidate"
+                ],
+                "summary": "Deletando Candidato",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/candidate_notice_content": {
+            "get": {
+                "tags": [
+                    "CandidateNoticeContent"
+                ],
+                "summary": "GET CandidateNoticeContent",
+                "operationId": "App\\Http\\Controllers\\CandidateNoticeContentController::find",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/order"
+                    },
+                    {
+                        "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "CandidateNoticeContent"
+                ],
+                "summary": "Registro de um novo Tipo de conhecimento",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "CandidateNoticeContent"
+                ],
+                "summary": "Deletando Tipo de conhecimento",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/candidate_notice_content/1": {
+            "get": {
+                "tags": [
+                    "CandidateNoticeContent"
+                ],
+                "summary": "GET CandidateNoticeContent",
+                "operationId": "App\\Http\\Controllers\\CandidateNoticeContentController::show",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "CandidateNoticeContent"
+                ],
+                "summary": "Atualizando Tipo de conhecimento",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "CandidateNoticeContent"
+                ],
+                "summary": "Deletando Tipo de conhecimento",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/category_content": {
+            "get": {
+                "tags": [
+                    "CategoryContent"
+                ],
+                "summary": "GET CategoryContent",
+                "operationId": "App\\Http\\Controllers\\CategoryContentController::find",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/order"
+                    },
+                    {
+                        "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "CategoryContent"
+                ],
+                "summary": "Registro de um novo Categoria de Conteúdo",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "CategoryContent"
+                ],
+                "summary": "Deletando Categoria de Conteúdo",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/category_content/1": {
+            "get": {
+                "tags": [
+                    "CategoryContent"
+                ],
+                "summary": "GET CategoryContent",
+                "operationId": "App\\Http\\Controllers\\CategoryContentController::show",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "CategoryContent"
+                ],
+                "summary": "Atualizando Categoria de Conteúdo",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "CategoryContent"
+                ],
+                "summary": "Deletando Categoria de Conteúdo",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/content": {
+            "get": {
+                "tags": [
+                    "Content"
+                ],
+                "summary": "GET Content",
+                "operationId": "App\\Http\\Controllers\\ContentController::find",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/order"
+                    },
+                    {
+                        "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Content"
+                ],
+                "summary": "Registro de um novo Conteúdo",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Content"
+                ],
+                "summary": "Deletando Conteúdo",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/content/1": {
+            "get": {
+                "tags": [
+                    "Content"
+                ],
+                "summary": "GET Content",
+                "operationId": "App\\Http\\Controllers\\ContentController::show",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Content"
+                ],
+                "summary": "Atualizando Conteúdo",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Content"
+                ],
+                "summary": "Deletando Conteúdo",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
         "/country": {
             "get": {
                 "tags": [
@@ -730,6 +1554,830 @@
                     "ExaminationBoard"
                 ],
                 "summary": "Deletando Banca",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/my_public_tender_notice": {
+            "get": {
+                "tags": [
+                    "MyPublicNoticeTender"
+                ],
+                "summary": "GET MyPublicNoticeTender",
+                "operationId": "App\\Http\\Controllers\\MyPublicNoticeTenderController::find",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/order"
+                    },
+                    {
+                        "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "MyPublicNoticeTender"
+                ],
+                "summary": "Registro de um novo Meu Edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "MyPublicNoticeTender"
+                ],
+                "summary": "Deletando Meu Edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/my_public_tender_notice/1": {
+            "get": {
+                "tags": [
+                    "MyPublicNoticeTender"
+                ],
+                "summary": "GET MyPublicNoticeTender",
+                "operationId": "App\\Http\\Controllers\\MyPublicNoticeTenderController::show",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "MyPublicNoticeTender"
+                ],
+                "summary": "Atualizando Meu Edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "MyPublicNoticeTender"
+                ],
+                "summary": "Deletando Meu Edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/notice_content": {
+            "get": {
+                "tags": [
+                    "NoticeContent"
+                ],
+                "summary": "GET NoticeContent",
+                "operationId": "App\\Http\\Controllers\\NoticeContentController::find",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/order"
+                    },
+                    {
+                        "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "NoticeContent"
+                ],
+                "summary": "Registro de um novo Itens do Edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "NoticeContent"
+                ],
+                "summary": "Deletando Itens do Edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/notice_content/1": {
+            "get": {
+                "tags": [
+                    "NoticeContent"
+                ],
+                "summary": "GET NoticeContent",
+                "operationId": "App\\Http\\Controllers\\NoticeContentController::show",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "NoticeContent"
+                ],
+                "summary": "Atualizando Itens do Edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "NoticeContent"
+                ],
+                "summary": "Deletando Itens do Edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/notice_content_office": {
+            "get": {
+                "tags": [
+                    "NoticeContentOffice"
+                ],
+                "summary": "GET NoticeContentOffice",
+                "operationId": "App\\Http\\Controllers\\NoticeContentOfficeController::find",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/order"
+                    },
+                    {
+                        "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "NoticeContentOffice"
+                ],
+                "summary": "Registro de um novo Itens do Edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "NoticeContentOffice"
+                ],
+                "summary": "Deletando Itens do Edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/notice_content_office/1": {
+            "get": {
+                "tags": [
+                    "NoticeContentOffice"
+                ],
+                "summary": "GET NoticeContentOffice",
+                "operationId": "App\\Http\\Controllers\\NoticeContentOfficeController::show",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "NoticeContentOffice"
+                ],
+                "summary": "Atualizando Itens do Edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "NoticeContentOffice"
+                ],
+                "summary": "Deletando Itens do Edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/office": {
+            "get": {
+                "tags": [
+                    "Office"
+                ],
+                "summary": "GET Office",
+                "operationId": "App\\Http\\Controllers\\OfficeController::find",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/order"
+                    },
+                    {
+                        "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Office"
+                ],
+                "summary": "Registro de um novo Cargo",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Superior"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Office"
+                ],
+                "summary": "Deletando Cargo",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/office/1": {
+            "get": {
+                "tags": [
+                    "Office"
+                ],
+                "summary": "GET Office",
+                "operationId": "App\\Http\\Controllers\\OfficeController::show",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Office"
+                ],
+                "summary": "Atualizando Cargo",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Superior"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Office"
+                ],
+                "summary": "Deletando Cargo",
                 "operationId": "store",
                 "parameters": [
                     {
@@ -1637,6 +3285,228 @@
                 }
             }
         },
+        "/public_tender_notice_office": {
+            "get": {
+                "tags": [
+                    "PublicTenderNoticeXOffice"
+                ],
+                "summary": "GET PublicTenderNoticeXOffice",
+                "operationId": "App\\Http\\Controllers\\PublicTenderNoticeXOfficeController::find",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/order"
+                    },
+                    {
+                        "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "PublicTenderNoticeXOffice"
+                ],
+                "summary": "Registro de um novo Edital e Estado",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "initials": {
+                                        "type": "string"
+                                    },
+                                    "country_id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami",
+                                    "initials": "MI",
+                                    "country_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "PublicTenderNoticeXOffice"
+                ],
+                "summary": "Deletando Edital e Estado",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/public_tender_notice_office/1": {
+            "get": {
+                "tags": [
+                    "PublicTenderNoticeXOffice"
+                ],
+                "summary": "GET PublicTenderNoticeXOffice",
+                "operationId": "App\\Http\\Controllers\\PublicTenderNoticeXOfficeController::show",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "PublicTenderNoticeXOffice"
+                ],
+                "summary": "Atualizando Cardo do Edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "initials": {
+                                        "type": "string"
+                                    },
+                                    "country_id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami",
+                                    "initials": "MI",
+                                    "country_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "PublicTenderNoticeXOffice"
+                ],
+                "summary": "Deletando Edital e Estado",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
         "/public_tender_notice_state": {
             "get": {
                 "tags": [
@@ -2303,6 +4173,212 @@
                 }
             }
         },
+        "/type_knowledge": {
+            "get": {
+                "tags": [
+                    "TypeKnowledge"
+                ],
+                "summary": "GET TypeKnowledge",
+                "operationId": "App\\Http\\Controllers\\TypeKnowledgeController::find",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/order"
+                    },
+                    {
+                        "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "TypeKnowledge"
+                ],
+                "summary": "Registro de um novo Tipo de conhecimento",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "TypeKnowledge"
+                ],
+                "summary": "Deletando Tipo de conhecimento",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/type_knowledge/1": {
+            "get": {
+                "tags": [
+                    "TypeKnowledge"
+                ],
+                "summary": "GET TypeKnowledge",
+                "operationId": "App\\Http\\Controllers\\TypeKnowledgeController::show",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "TypeKnowledge"
+                ],
+                "summary": "Atualizando Tipo de conhecimento",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Miami"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "TypeKnowledge"
+                ],
+                "summary": "Deletando Tipo de conhecimento",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
         "/type_organ": {
             "get": {
                 "tags": [
@@ -2615,6 +4691,70 @@
             }
         },
         {
+            "name": "Candidate",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/candidate"
+            }
+        },
+        {
+            "name": "Candidate",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/candidate"
+            }
+        },
+        {
+            "name": "CandidateNoticeContent",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/candidate_notice_content"
+            }
+        },
+        {
+            "name": "CandidateNoticeContent",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/candidate_notice_content"
+            }
+        },
+        {
+            "name": "CategoryContent",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/category_content"
+            }
+        },
+        {
+            "name": "CategoryContent",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/category_content"
+            }
+        },
+        {
+            "name": "Content",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/content"
+            }
+        },
+        {
+            "name": "Content",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/content"
+            }
+        },
+        {
             "name": "Country",
             "description": "Credentials object",
             "externalDocs": {
@@ -2660,6 +4800,70 @@
             "externalDocs": {
                 "description": "Credentials object",
                 "url": "http://autopecadelivery.com/api/examination_board"
+            }
+        },
+        {
+            "name": "MyPublicNoticeTender",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/my_public_tender_notice"
+            }
+        },
+        {
+            "name": "MyPublicNoticeTender",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/my_public_tender_notice"
+            }
+        },
+        {
+            "name": "NoticeContent",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/notice_content"
+            }
+        },
+        {
+            "name": "NoticeContent",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/notice_content"
+            }
+        },
+        {
+            "name": "NoticeContentOffice",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/notice_content_office"
+            }
+        },
+        {
+            "name": "NoticeContentOffice",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/notice_content_office"
+            }
+        },
+        {
+            "name": "Office",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/office"
+            }
+        },
+        {
+            "name": "Office",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/office"
             }
         },
         {
@@ -2727,6 +4931,22 @@
             }
         },
         {
+            "name": "PublicTenderNoticeXOffice",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/public_tender_notice_office"
+            }
+        },
+        {
+            "name": "PublicTenderNoticeXOffice",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/public_tender_notice_office"
+            }
+        },
+        {
             "name": "PublicTenderNoticeXState",
             "description": "Credentials object",
             "externalDocs": {
@@ -2772,6 +4992,22 @@
             "externalDocs": {
                 "description": "Credentials object",
                 "url": "http://autopecadelivery.com/api/status_public_tender_notice"
+            }
+        },
+        {
+            "name": "TypeKnowledge",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/type_knowledge"
+            }
+        },
+        {
+            "name": "TypeKnowledge",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/type_knowledge"
             }
         },
         {

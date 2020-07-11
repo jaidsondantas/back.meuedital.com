@@ -5,9 +5,10 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOfficesTable extends Migration
+class CreateNoticeContentOfficesTable extends Migration
 {
     use CommonMigration;
+
     /**
      * Run the migrations.
      *
@@ -15,11 +16,16 @@ class CreateOfficesTable extends Migration
      */
     public function up()
     {
-        Schema::create('offices', function (Blueprint $table) {
+        Schema::create('notice_content_offices', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
             $table->bigIncrements('id');
-            $table->string('name');
+
+            $table->bigInteger('notice_content_id')->unsigned();
+            $table->foreign('notice_content_id')->references('id')->on('notice_contents');
+
+            $table->bigInteger('office_id')->unsigned();
+            $table->foreign('office_id')->references('office_id')->on('public_tender_notice_x_offices');
 
             $this->setUsersBy($table);
             $this->timestampsSoftDeletes($table);
@@ -33,6 +39,6 @@ class CreateOfficesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offices');
+        Schema::dropIfExists('notice_content_offices');
     }
 }

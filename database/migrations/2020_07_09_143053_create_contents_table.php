@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOfficesTable extends Migration
+class CreateContentsTable extends Migration
 {
     use CommonMigration;
     /**
@@ -15,11 +15,14 @@ class CreateOfficesTable extends Migration
      */
     public function up()
     {
-        Schema::create('offices', function (Blueprint $table) {
+        Schema::create('contents', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
             $table->bigIncrements('id');
             $table->string('name');
+
+            $table->bigInteger('category_content_id')->unsigned();
+            $table->foreign('category_content_id')->references('id')->on('category_contents');
 
             $this->setUsersBy($table);
             $this->timestampsSoftDeletes($table);
@@ -33,6 +36,6 @@ class CreateOfficesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offices');
+        Schema::dropIfExists('contents');
     }
 }

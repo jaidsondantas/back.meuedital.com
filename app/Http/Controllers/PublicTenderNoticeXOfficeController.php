@@ -8,11 +8,11 @@ use App\Actions\DeleteMultipleActionTrait;
 use App\Actions\FindAllActionTrait;
 use App\Actions\FindIdActionTrait;
 use App\Actions\UpdateActionTrait;
-use App\Models\PublicTenderNotice;
+use App\Models\PublicTenderNoticeXOffice;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class PublicTenderNoticeController extends Controller
+class PublicTenderNoticeXOfficeController extends Controller
 {
     use FindAllActionTrait;
     use FindIdActionTrait;
@@ -23,9 +23,9 @@ class PublicTenderNoticeController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/public_tender_notice",
-     *     tags={"PublicTenderNotice"},
-     *     summary="GET PublicTenderNotice",
+     *     path="/public_tender_notice_office",
+     *     tags={"PublicTenderNoticeXOffice"},
+     *     summary="GET PublicTenderNoticeXOffice",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -76,35 +76,14 @@ class PublicTenderNoticeController extends Controller
      */
     public function find(Request $request)
     {
-        return $this->findAll(new PublicTenderNotice(), $request, PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'));
-//        $model = new PublicTenderNotice();
-//
-//        $parameters = $this->getParameters($request, $model);
-//
-//        $keyOrder = $this->getKeyOrder($parameters->order);
-//
-//        $data = $model::with($parameters->populate)
-//            ->when($parameters->where, function ($query) use ($parameters) {
-//                $andWhere = $parameters->where['and'];
-//                $orWhere = $parameters->where['or'];
-//                $this->createAndWhere($andWhere, $query);
-//                $this->createOrWhere($orWhere, $query);
-//            })
-//            ->orderBy($keyOrder, $parameters->order[$keyOrder])
-//            ->paginate($parameters->per_page);
-//
-//        if (count($data) > 0) {
-//            return $this->responseFindAll($data);
-//        } else {
-//            return $this->responseNotFoundAll($data, $alias, 400);
-//        }
+        return $this->findAll(new PublicTenderNoticeXOffice(), $request, PublicTenderNoticeXOffice::getAliasEntity(PublicTenderNoticeXOffice::ALIAS, 'M'));
     }
 
     /**
      * @OA\Get(
-     *     path="/public_tender_notice/1",
-     *     tags={"PublicTenderNotice"},
-     *     summary="GET PublicTenderNotice",
+     *     path="/public_tender_notice_office/1",
+     *     tags={"PublicTenderNoticeXOffice"},
+     *     summary="GET PublicTenderNoticeXOffice",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -141,24 +120,24 @@ class PublicTenderNoticeController extends Controller
      */
     public function show($id, Request $request)
     {
-        return $this->findId($id, new PublicTenderNotice(), $request, PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'));
+        return $this->findId($id, new PublicTenderNoticeXOffice(), $request, PublicTenderNoticeXOffice::getAliasEntity(PublicTenderNoticeXOffice::ALIAS, 'M'));
     }
 
 
     /**
      * @OA\Tag(
-     *     name="PublicTenderNotice",
+     *     name="PublicTenderNoticeXOffice",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/public_tender_notice"
+     *         url="http://autopecadelivery.com/api/public_tender_notice_office"
      *     )
      * )
      * @OA\Post(
-     *     path="/public_tender_notice",
-     *     summary="Registro de um novo Editais",
+     *     path="/public_tender_notice_office",
+     *     summary="Registro de um novo Edital e Estado",
      *     operationId="store",
-     *     tags={"PublicTenderNotice"},
+     *     tags={"PublicTenderNoticeXOffice"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -175,38 +154,18 @@ class PublicTenderNoticeController extends Controller
      *                     property="name",
      *                     type="string"
      *                 ),
-     *                  @OA\Property(
-     *                     property="description",
+     *                 @OA\Property(
+     *                     property="initials",
      *                     type="string"
      *                 ),
-     *                  @OA\Property(
-     *                     property="year",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="organ_id",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="examination_board_id",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="status_public_tender_notice_id",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="created_by",
+     *                @OA\Property(
+     *                     property="country_id",
      *                     type="string"
      *                 ),
      *                 example={
-     *                  "name": "Concurso SEDF",
-     *                  "description": "Pense um pouco e responda: quantas janelas de oportunidades de fato significativas abrem-se durante uma vida?",
-     *                  "year": "2020",
-     *                  "organ_id": 2,
-     *                  "examination_board_id": 1,
-     *                  "status_public_tender_notice_id": 1,
-     *                  "created_by": 2,
+     *                  "name": "Miami",
+     *                  "initials": "MI",
+     *                  "country_id": 1,
      *                      }
      *             )
      *         )
@@ -217,7 +176,7 @@ class PublicTenderNoticeController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/PublicTenderNoticeStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/PublicTenderNoticeXOfficeStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -235,23 +194,23 @@ class PublicTenderNoticeController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->create(new PublicTenderNotice(), $request, PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'));
+        return $this->create(new PublicTenderNoticeXOffice(), $request, PublicTenderNoticeXOffice::getAliasEntity(PublicTenderNoticeXOffice::ALIAS, 'M'));
     }
 
     /**
      * @OA\Tag(
-     *     name="PublicTenderNotice",
+     *     name="PublicTenderNoticeXOffice",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/public_tender_notice"
+     *         url="http://autopecadelivery.com/api/public_tender_notice_office"
      *     )
      * )
      * @OA\Put(
-     *     path="/public_tender_notice/1",
-     *     summary="Atualizando Editais",
+     *     path="/public_tender_notice_office/1",
+     *     summary="Atualizando Cardo do Edital",
      *     operationId="store",
-     *     tags={"PublicTenderNotice"},
+     *     tags={"PublicTenderNoticeXOffice"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -268,38 +227,18 @@ class PublicTenderNoticeController extends Controller
      *                     property="name",
      *                     type="string"
      *                 ),
-     *                  @OA\Property(
-     *                     property="description",
+     *                 @OA\Property(
+     *                     property="initials",
      *                     type="string"
      *                 ),
-     *                  @OA\Property(
-     *                     property="year",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="organ_id",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="examination_board_id",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="status_public_tender_notice_id",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="created_by",
+     *                @OA\Property(
+     *                     property="country_id",
      *                     type="string"
      *                 ),
      *                 example={
-     *                  "name": "Concurso SEDF",
-     *                  "description": "Pense um pouco e responda: quantas janelas de oportunidades de fato significativas abrem-se durante uma vida?",
-     *                  "year": "2020",
-     *                  "organ_id": 2,
-     *                  "examination_board_id": 1,
-     *                  "status_public_tender_notice_id": 1,
-     *                  "created_by": 2,
+     *                  "name": "Miami",
+     *                  "initials": "MI",
+     *                  "country_id": 1,
      *                      }
      *             )
      *         )
@@ -310,7 +249,7 @@ class PublicTenderNoticeController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/PublicTenderNoticeStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/PublicTenderNoticeXOfficeStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -329,15 +268,15 @@ class PublicTenderNoticeController extends Controller
      */
     public function updateEntity(Request $request, $id)
     {
-        return $this->update($id, new PublicTenderNotice(), $request, PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'));
+        return $this->update($id, new PublicTenderNoticeXOffice(), $request, PublicTenderNoticeXOffice::getAliasEntity(PublicTenderNoticeXOffice::ALIAS, 'M'));
     }
 
     /**
      * @OA\Delete(
-     *     path="/public_tender_notice/1",
-     *     summary="Deletando Editais",
+     *     path="/public_tender_notice_office/1",
+     *     summary="Deletando Edital e Estado",
      *     operationId="store",
-     *     tags={"PublicTenderNotice"},
+     *     tags={"PublicTenderNoticeXOffice"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -368,15 +307,15 @@ class PublicTenderNoticeController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        return $this->delete($id, new PublicTenderNotice(), PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'), $request);
+        return $this->delete($id, new PublicTenderNoticeXOffice(), PublicTenderNoticeXOffice::getAliasEntity(PublicTenderNoticeXOffice::ALIAS, 'M'), $request);
     }
 
     /**
      * @OA\Delete(
-     *     path="/public_tender_notice",
-     *     summary="Deletando Editais",
+     *     path="/public_tender_notice_office",
+     *     summary="Deletando Edital e Estado",
      *     operationId="store",
-     *     tags={"PublicTenderNotice"},
+     *     tags={"PublicTenderNoticeXOffice"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -408,6 +347,6 @@ class PublicTenderNoticeController extends Controller
      */
     public function destroyMultiple(Request $request)
     {
-        return $this->deleteMultiple($request, PublicTenderNotice::class, PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'));
+        return $this->deleteMultiple($request, PublicTenderNoticeXOffice::class, PublicTenderNoticeXOffice::getAliasEntity(PublicTenderNoticeXOffice::ALIAS, 'M'));
     }
 }

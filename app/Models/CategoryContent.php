@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Validation\Rule;
 
-class TypeOrgan extends BaseModel
+class CategoryContent extends BaseModel
 {
-    const ALIAS = ['Tipo de Orgão', 'Tipos de Orgãos'];
+    const ALIAS = ['Categoria do Conteúdo', 'Categorias de Conteúdos'];
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
 
-        $this->setPopulate(['organs']);
+        $this->setPopulate(['contents']);
     }
 
     /**
@@ -30,9 +30,9 @@ class TypeOrgan extends BaseModel
         ];
     }
 
-    public function organs()
+    public function contents()
     {
-        return  $this->hasMany(Organ::class);
+        return $this->hasMany(Content::class);
     }
 
 }

@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\Traits\MessagesTraits;
+use App\Models\Candidate;
 use App\User;
 use Carbon\Carbon;
 use Firebase\Auth\Token\Exception\InvalidToken;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -114,6 +112,16 @@ class AuthController extends Controller
 
         $user->save();
 
+        if ($user) {
+            $candidate = new Candidate([
+                'name' => $request->input('name'),
+                'user_id' => $user->id,
+                'created_by' => auth()->user()->id
+            ]);
+
+            $candidate->save();
+        }
+
         return response()->json([
             'message' => 'Usuário criado com sucesso.',
             'entity' => $user
@@ -186,12 +194,24 @@ class AuthController extends Controller
 
         $user = User::where('firebase_uid', $uid)->first();
 
+        $isCandidate = Candidate::where('user_id', $user->id)->first();
+
         if ($user == null) {
             $request->request->add(['firebase_uid' => $uid]);
             $request->request->add(['name' => $verifiedIdToken->getClaim('email')]);
             $request->request->add(['email' => $verifiedIdToken->getClaim('email')]);
 
             $this->register($request);
+        }
+
+        if ($isCandidate == null) {
+            $candidateData = new Candidate();
+
+            $candidateData->name = $user->name;
+            $candidateData->user_id = $user->id;
+            $candidateData->created_by = $user->id;
+
+            $candidateData->save();
         }
 
         $user = User::where('firebase_uid', $uid)->first();
@@ -207,6 +227,7 @@ class AuthController extends Controller
         $createToken->token->save();
 
         return response()->json([
+            'user_id' => $user->id,
             'access_token' => $token,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse(

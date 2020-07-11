@@ -32,6 +32,16 @@ Route::group(['middleware' => 'auth:api'], function () {
     RouteService::createRoute('education_level', 'EducationLevelController', BaseModel::getActions());
     RouteService::createRoute('public_tender_notice_education_level', 'PublicTenderNoticeXEducationLevelController', BaseModel::getActions());
     RouteService::createRoute('public_tender_notice_state', 'PublicTenderNoticeXStateController', BaseModel::getActions());
+    RouteService::createRoute('office', 'OfficeController', BaseModel::getActions());
+    RouteService::createRoute('public_tender_notice_office', 'PublicTenderNoticeXOfficeController', BaseModel::getActions());
+    RouteService::createRoute('category_content', 'CategoryContentController', BaseModel::getActions());
+    RouteService::createRoute('content', 'ContentController', BaseModel::getActions());
+    RouteService::createRoute('type_knowledge', 'TypeKnowledgeController', BaseModel::getActions());
+    RouteService::createRoute('notice_content', 'NoticeContentController', BaseModel::getActions());
+    RouteService::createRoute('notice_content_office', 'NoticeContentOfficeController', BaseModel::getActions());
+    RouteService::createRoute('candidate', 'CandidateController', BaseModel::getActions());
+    RouteService::createRoute('candidate_notice_content', 'CandidateNoticeContentController', BaseModel::getActions());
+    RouteService::createRoute('my_public_tender_notice', 'MyPublicNoticeTenderController', BaseModel::getActions());
 });
 
 

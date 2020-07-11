@@ -12,7 +12,7 @@ class ExaminationBoard extends BaseModel
     {
         parent::__construct($attributes);
 
-        $this->setPopulate(['publicTenderNotice']);
+        $this->setPopulate(['publicTenderNotices']);
     }
 
     /**
@@ -30,7 +30,7 @@ class ExaminationBoard extends BaseModel
         ];
     }
 
-    public function publicTenderNotice()
+    public function publicTenderNotices()
     {
         return $this->hasMany(PublicTenderNotice::class);
     }

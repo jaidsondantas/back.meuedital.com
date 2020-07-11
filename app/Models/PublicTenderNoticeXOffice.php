@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Model;
 
-class PublicTenderNoticeXState extends BaseModel
+class PublicTenderNoticeXOffice extends BaseModel
 {
-    protected $table = 'public_tender_notice_x_states';
+    protected $table = 'public_tender_notice_x_offices';
 
-    const ALIAS = ['Estado', 'Estados'];
+    const ALIAS = ['Cargos do Edital', 'Cargos dos Editais'];
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
 
-        $this->setPopulate([]);
+        $this->setPopulate(['office']);
     }
 
     /**
@@ -29,9 +29,12 @@ class PublicTenderNoticeXState extends BaseModel
     {
         return [
             'public_tender_notice_id' => ['required'],
-            'education_level_id' => ['required'],
+            'office_id' => ['required'],
         ];
     }
 
-
+    public function office()
+    {
+        return $this->belongsTo(Office::class);
+    }
 }
