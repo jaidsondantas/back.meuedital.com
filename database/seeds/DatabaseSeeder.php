@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
         $this->call(UserSeeder::class);
         $this->call(CountrySeeder::class);
         $this->call(StateSeeder::class);
@@ -31,5 +32,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TypeKnowledgeSeeder::class);
         $this->call(NoticeContentsSeeder::class);
         $this->call(NoticeContentOfficeSeeder::class);
+        Schema::enableForeignKeyConstraints();
     }
 }
