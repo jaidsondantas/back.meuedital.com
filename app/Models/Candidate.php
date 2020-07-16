@@ -12,7 +12,7 @@ class Candidate extends BaseModel
     {
         parent::__construct($attributes);
 
-        $this->setPopulate(['user', 'state', 'country']);
+        $this->setPopulate(['user', 'state', 'country', 'publicTenderNotices']);
     }
 
     /**
@@ -49,6 +49,12 @@ class Candidate extends BaseModel
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function publicTenderNotices(){
+        return $this->belongsToMany(PublicTenderNotice::class, 'my_public_notice_tenders')
+            ->withPivot('public_tender_notice_id')
+            ->where('my_public_notice_tenders.deleted_at', '=', null);
     }
 
 }

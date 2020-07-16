@@ -10,7 +10,7 @@ class NoticeContent extends BaseModel
     {
         parent::__construct($attributes);
 
-        $this->setPopulate(['content', 'typeKnowledge']);
+        $this->setPopulate(['content', 'typeKnowledge', 'noticeContentOffices']);
     }
 
     /**
@@ -39,4 +39,12 @@ class NoticeContent extends BaseModel
     {
         return $this->belongsTo(TypeKnowledge::class);
     }
+
+    public function noticeContentOffices()
+    {
+        return $this->hasMany(NoticeContentOffice::class);
+    }
+
+
+
 }

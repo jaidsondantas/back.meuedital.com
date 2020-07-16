@@ -1573,6 +1573,212 @@
                 }
             }
         },
+        "/my_content_public_notice": {
+            "get": {
+                "tags": [
+                    "MyContentPublicNotice"
+                ],
+                "summary": "GET MyContentPublicNotice",
+                "operationId": "App\\Http\\Controllers\\MyContentPublicNoticeController::find",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/order"
+                    },
+                    {
+                        "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "MyContentPublicNotice"
+                ],
+                "summary": "Registro de um novo Itens do meu edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Superior"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "MyContentPublicNotice"
+                ],
+                "summary": "Deletando Itens do meu edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    },
+                    {
+                        "$ref": "#/components/parameters/where"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/my_content_public_notice/1": {
+            "get": {
+                "tags": [
+                    "MyContentPublicNotice"
+                ],
+                "summary": "GET MyContentPublicNotice",
+                "operationId": "App\\Http\\Controllers\\MyContentPublicNoticeController::show",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/context"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Example not found"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "MyContentPublicNotice"
+                ],
+                "summary": "Atualizando Itens do meu edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Superior"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "MyContentPublicNotice"
+                ],
+                "summary": "Deletando Itens do meu edital",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/components/parameters/populate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
         "/my_public_tender_notice": {
             "get": {
                 "tags": [
@@ -4800,6 +5006,22 @@
             "externalDocs": {
                 "description": "Credentials object",
                 "url": "http://autopecadelivery.com/api/examination_board"
+            }
+        },
+        {
+            "name": "MyContentPublicNotice",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/my_content_public_notice"
+            }
+        },
+        {
+            "name": "MyContentPublicNotice",
+            "description": "Credentials object",
+            "externalDocs": {
+                "description": "Credentials object",
+                "url": "http://autopecadelivery.com/api/my_content_public_notice"
             }
         },
         {

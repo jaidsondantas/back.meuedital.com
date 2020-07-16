@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     RouteService::createRoute('candidate', 'CandidateController', BaseModel::getActions());
     RouteService::createRoute('candidate_notice_content', 'CandidateNoticeContentController', BaseModel::getActions());
     RouteService::createRoute('my_public_tender_notice', 'MyPublicNoticeTenderController', BaseModel::getActions());
+    RouteService::createRoute('my_content_public_notice', 'MyContentPublicNoticeController', BaseModel::getActions());
 });
 
 

@@ -8,6 +8,7 @@ use App\Actions\DeleteMultipleActionTrait;
 use App\Actions\FindAllActionTrait;
 use App\Actions\FindIdActionTrait;
 use App\Actions\UpdateActionTrait;
+use App\Models\MyContentPublicNotice;
 use App\Models\MyPublicNoticeTender;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -327,6 +328,6 @@ class MyPublicNoticeTenderController extends Controller
      */
     public function destroyMultiple(Request $request)
     {
-        return $this->deleteMultiple($request, MyPublicNoticeTender::class, MyPublicNoticeTender::getAliasEntity(MyPublicNoticeTender::ALIAS, 'M'));
+        return $this->deleteMultiple($request, new MyPublicNoticeTender(), MyPublicNoticeTender::getAliasEntity(MyPublicNoticeTender::ALIAS, 'M'));
     }
 }

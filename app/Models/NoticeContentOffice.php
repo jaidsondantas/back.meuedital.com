@@ -12,7 +12,7 @@ class NoticeContentOffice extends BaseModel
     {
         parent::__construct($attributes);
 
-        $this->setPopulate(['content', 'office']);
+        $this->setPopulate(['content', 'office', 'noticeContent']);
     }
 
     /**
@@ -31,6 +31,18 @@ class NoticeContentOffice extends BaseModel
         ];
     }
 
+    public static function getAliasJoin(){
+        return [
+            'c.name as contentName',
+            'c.id as contentId',
+            'ptn.id as public_tender_notice_id',
+            'ptn.name as public_tender_name',
+            'notice_content_offices.office_id as office_id',
+            'c.category_content_id as category_content_id',
+            'nc.type_knowledge_id as type_knowledge_id',
+        ];
+    }
+
     public function content()
     {
         return $this->belongsTo(Content::class, 'notice_content_id');
@@ -40,4 +52,10 @@ class NoticeContentOffice extends BaseModel
     {
         return $this->belongsTo(Office::class);
     }
+
+    public function noticeContent()
+    {
+        return $this->belongsTo(NoticeContent::class);
+    }
+
 }

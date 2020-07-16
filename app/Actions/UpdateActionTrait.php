@@ -4,12 +4,13 @@ namespace App\Actions;
 
 
 use App\Actions\Models\ResponseValidate;
+use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 
 trait UpdateActionTrait
 {
-    public function update($id, Model $model, $request, $alias, $bodyRequest = null)
+    public function update($id, BaseModel $model, $request, $alias, $bodyRequest = null)
     {
         $bodyRequest = $bodyRequest == null ? $request : $bodyRequest;
 

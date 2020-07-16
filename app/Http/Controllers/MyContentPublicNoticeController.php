@@ -7,14 +7,19 @@ use App\Actions\DeleteActionTrait;
 use App\Actions\DeleteMultipleActionTrait;
 use App\Actions\FindAllActionTrait;
 use App\Actions\FindIdActionTrait;
+use App\Actions\Models\Where;
 use App\Actions\UpdateActionTrait;
-use App\Models\NoticeContentOffice;
+use App\Models\CategoryContent;
+use App\Models\MyContentPublicNotice;
+use App\Models\TypeKnowledge;
+use App\Services\QueryService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Http\Controllers\NoticeContentOfficeController;
 
-class NoticeContentOfficeController extends Controller
+class MyContentPublicNoticeController extends Controller
 {
-//    use FindAllActionTrait;
+    use FindAllActionTrait;
     use FindIdActionTrait;
     use CreateActionTrait;
     use UpdateActionTrait;
@@ -23,9 +28,9 @@ class NoticeContentOfficeController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/notice_content_office",
-     *     tags={"NoticeContentOffice"},
-     *     summary="GET NoticeContentOffice",
+     *     path="/my_content_public_notice",
+     *     tags={"MyContentPublicNotice"},
+     *     summary="GET MyContentPublicNotice",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -76,25 +81,57 @@ class NoticeContentOfficeController extends Controller
      */
     public function find(Request $request)
     {
-        $data = NoticeContentOffice::
-            join('notice_contents as nc', 'notice_content_offices.id', '=', 'nc.id')
-            ->join('contents as c', 'content_id', '=', 'c.id')
-            ->join('public_tender_notices as ptn', 'nc.public_tender_notice_id', '=', 'ptn.id')
-            ->where('ptn.id', $request->input('public_tender_notice_id'))
-            ->where('notice_content_offices.office_id', $request->input('office_id'))
-            ->select(NoticeContentOffice::getAliasJoin())
-            ->get();
+        $data = $this->findAll(new MyContentPublicNotice(), $request, MyContentPublicNotice::getAliasEntity(MyContentPublicNotice::ALIAS, 'M'));
 
+        if (json_decode($data->content())->total > 0) {
+            $typeKnowledges = [];
+            $categoryContents = [];
+            $data = json_decode($data->content());
+
+            foreach ($data->entity->my_content_public_notices as $key => $myContent) {
+                $typeKnowledges[$key] = $myContent->type_knowledge;
+                $categoryContents[$key] = $myContent->category_content;
+            }
+
+            $dataFinal = [];
+
+            $typeKnowledges = QueryService::myArrayUnique($typeKnowledges);
+            $categoryContents = QueryService::myArrayUnique($categoryContents);
+
+            foreach ($typeKnowledges as $key => $typeKnowledge) {
+                $dataFinal['type_knowledge'][$key] = [
+                    'id' => $typeKnowledge->id,
+                    'name' => $typeKnowledge->name,
+                    'category_content' => []
+                ];
+                foreach ($categoryContents as $keyCategoryContent => $category) {
+                    $dataFinal['type_knowledge'][$key]['category_content'][$keyCategoryContent] = [
+                        'id' => $category->id,
+                        'name' => $category->name,
+                        'my_contents' => []
+                    ];
+
+                    foreach ($data->entity->my_content_public_notices as $keyContent => $myContent) {
+                        if ($typeKnowledge->id == $myContent->type_knowledge->id && $myContent->category_content->id == $category->id) {
+                            $dataFinal['type_knowledge'][$key]['category_content'][$keyCategoryContent]['my_contents'][] = $myContent;
+                        }
+                    }
+                }
+
+
+            }
+            $data->entity = $dataFinal;
+            return response()->json($data);
+        }
         return $data;
 
-//        return $this->findAll(new NoticeContentOffice(), $request, NoticeContentOffice::getAliasEntity(NoticeContentOffice::ALIAS, 'M'));
     }
 
     /**
      * @OA\Get(
-     *     path="/notice_content_office/1",
-     *     tags={"NoticeContentOffice"},
-     *     summary="GET NoticeContentOffice",
+     *     path="/my_content_public_notice/1",
+     *     tags={"MyContentPublicNotice"},
+     *     summary="GET MyContentPublicNotice",
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
      *     ),
@@ -131,24 +168,24 @@ class NoticeContentOfficeController extends Controller
      */
     public function show($id, Request $request)
     {
-        return $this->findId($id, new NoticeContentOffice(), $request, NoticeContentOffice::getAliasEntity(NoticeContentOffice::ALIAS, 'M'));
+        return $this->findId($id, new MyContentPublicNotice(), $request, MyContentPublicNotice::getAliasEntity(MyContentPublicNotice::ALIAS, 'M'));
     }
 
 
     /**
      * @OA\Tag(
-     *     name="NoticeContentOffice",
+     *     name="MyContentPublicNotice",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/notice_content_office"
+     *         url="http://autopecadelivery.com/api/my_content_public_notice"
      *     )
      * )
      * @OA\Post(
-     *     path="/notice_content_office",
-     *     summary="Registro de um novo Itens do Edital",
+     *     path="/my_content_public_notice",
+     *     summary="Registro de um novo Itens do meu edital",
      *     operationId="store",
-     *     tags={"NoticeContentOffice"},
+     *     tags={"MyContentPublicNotice"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -166,7 +203,7 @@ class NoticeContentOfficeController extends Controller
      *                     type="string"
      *                 ),
      *                 example={
-     *                  "name": "Miami",
+     *                  "name": "Superior",
      *                      }
      *             )
      *         )
@@ -177,7 +214,7 @@ class NoticeContentOfficeController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/ContentStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/MyContentPublicNoticeStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -195,23 +232,66 @@ class NoticeContentOfficeController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->create(new NoticeContentOffice(), $request, NoticeContentOffice::getAliasEntity(NoticeContentOffice::ALIAS, 'M'));
+        $noticeContentOfficeController = new NoticeContentOfficeController();
+        $contents = $noticeContentOfficeController->find($request)->all();
+
+        $myContentPublicNotice = [];
+
+        foreach ($contents as $key => $content) {
+            $myContentPublicNotice[$key] =
+                [
+                    'status' => false,
+                    'candidate_id' => $request->input('candidate_id'),
+                    'public_tender_notice_id' => $request->input('public_tender_notice_id'),
+                    'office_id' => (int)$request->input('office_id'),
+                    'content_id' => $content->contentId,
+                    'category_content_id' => $content['category_content_id'],
+                    'type_knowledge_id' => $content['type_knowledge_id'],
+                    'created_by' => auth()->user()->id
+                ];
+        }
+
+        $candidateId = $request->input('candidate_id');
+        $officeId = $request->input('office_id');
+        $publicTenderNotice = $request->input('public_tender_notice_id');
+
+        $request->query->add(
+            ['where' =>
+                "{\"and\":{\"candidate_id\": \"eq:$candidateId\", \"office_id\": \"eq:$officeId\", \"public_tender_notice_id\": \"eq:$publicTenderNotice\"},\"or\":{}}"
+            ]);
+
+        $request->query->add(['per_page' => 1000]);
+        $request->query->add(['page' => 1]);
+        $request->query->add(['limit' => "10"]);
+        $request->query->add(['order' => "{\"created_at\": \"ASC\"}"]);
+
+        $itExists = $this->find($request);
+
+        if($itExists && $itExists->original->total == 0){
+            MyContentPublicNotice::insert($myContentPublicNotice);
+            $data = $this->find($request);
+        }else{
+            $data = $itExists;
+        }
+
+        return response()->json($data->original, 200);
+//        return $this->create(new MyContentPublicNotice(), $request, MyContentPublicNotice::getAliasEntity(MyContentPublicNotice::ALIAS, 'M'));
     }
 
     /**
      * @OA\Tag(
-     *     name="NoticeContentOffice",
+     *     name="MyContentPublicNotice",
      *     description="Credentials object",
      *     @OA\ExternalDocumentation(
      *         description="Credentials object",
-     *         url="http://autopecadelivery.com/api/notice_content_office"
+     *         url="http://autopecadelivery.com/api/my_content_public_notice"
      *     )
      * )
      * @OA\Put(
-     *     path="/notice_content_office/1",
-     *     summary="Atualizando Itens do Edital",
+     *     path="/my_content_public_notice/1",
+     *     summary="Atualizando Itens do meu edital",
      *     operationId="store",
-     *     tags={"NoticeContentOffice"},
+     *     tags={"MyContentPublicNotice"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -229,7 +309,7 @@ class NoticeContentOfficeController extends Controller
      *                     type="string"
      *                 ),
      *                 example={
-     *                  "name": "Miami",
+     *                  "name": "Superior",
      *                      }
      *             )
      *         )
@@ -240,7 +320,7 @@ class NoticeContentOfficeController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/ContentStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/MyContentPublicNoticeStoreRequest")
      *     ),
      *     @OA\Response(
      *      response=400,
@@ -259,15 +339,15 @@ class NoticeContentOfficeController extends Controller
      */
     public function updateEntity(Request $request, $id)
     {
-        return $this->update($id, new NoticeContentOffice(), $request, NoticeContentOffice::getAliasEntity(NoticeContentOffice::ALIAS, 'M'));
+        return $this->update($id, new MyContentPublicNotice(), $request, MyContentPublicNotice::getAliasEntity(MyContentPublicNotice::ALIAS, 'M'));
     }
 
     /**
      * @OA\Delete(
-     *     path="/notice_content_office/1",
-     *     summary="Deletando Itens do Edital",
+     *     path="/my_content_public_notice/1",
+     *     summary="Deletando Itens do meu edital",
      *     operationId="store",
-     *     tags={"NoticeContentOffice"},
+     *     tags={"MyContentPublicNotice"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -298,15 +378,15 @@ class NoticeContentOfficeController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        return $this->delete($id, new NoticeContentOffice(), NoticeContentOffice::getAliasEntity(NoticeContentOffice::ALIAS, 'F'), $request);
+        return $this->delete($id, new MyContentPublicNotice(), MyContentPublicNotice::getAliasEntity(MyContentPublicNotice::ALIAS, 'M'), $request);
     }
 
     /**
      * @OA\Delete(
-     *     path="/notice_content_office",
-     *     summary="Deletando Itens do Edital",
+     *     path="/my_content_public_notice",
+     *     summary="Deletando Itens do meu edital",
      *     operationId="store",
-     *     tags={"NoticeContentOffice"},
+     *     tags={"MyContentPublicNotice"},
      *
      *     @OA\Parameter(
      *          ref="#/components/parameters/Authorization"
@@ -338,6 +418,6 @@ class NoticeContentOfficeController extends Controller
      */
     public function destroyMultiple(Request $request)
     {
-        return $this->deleteMultiple($request, NoticeContentOffice::class, NoticeContentOffice::getAliasEntity(NoticeContentOffice::ALIAS, 'M'));
+        return $this->deleteMultiple($request, new MyContentPublicNotice(), MyContentPublicNotice::getAliasEntity(MyContentPublicNotice::ALIAS, 'M'));
     }
 }

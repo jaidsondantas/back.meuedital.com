@@ -6,7 +6,7 @@ use Illuminate\Validation\Rule;
 
 class PublicTenderNotice extends BaseModel
 {
-    const ALIAS = ['Estado', 'Estados'];
+    const ALIAS = ['Edital', 'Editais'];
 
     public function __construct(array $attributes = [])
     {
@@ -65,5 +65,6 @@ class PublicTenderNotice extends BaseModel
     {
         return $this->belongsToMany(Office::class, 'public_tender_notice_x_offices', 'public_tender_notice_id', 'office_id');
     }
+
 
 }

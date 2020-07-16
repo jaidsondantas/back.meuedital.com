@@ -10,7 +10,7 @@ class MyPublicNoticeTender extends BaseModel
     {
         parent::__construct($attributes);
 
-        $this->setPopulate([]);
+        $this->setPopulate(['office']);
     }
 
     /**
@@ -26,5 +26,10 @@ class MyPublicNoticeTender extends BaseModel
         return [
         ];
     }
+    public function office()
+    {
+        return $this->belongsTo(Office::class);
+    }
+
 
 }

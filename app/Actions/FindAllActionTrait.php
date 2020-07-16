@@ -22,7 +22,7 @@ trait FindAllActionTrait
         })
             ->with($parameters->populate)
             ->orderBy($keyOrder, $parameters->order[$keyOrder])
-            ->paginate($parameters->per_page);
+            ->paginate(15);
 
         if (count($data) > 0) {
             return $this->responseFindAll($data);
