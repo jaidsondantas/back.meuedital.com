@@ -65,6 +65,7 @@
             "@php artisan key:generate --ansi"
         ],
         "dev-install-full": [
+            "@composer update",
             "@php artisan migrate:fresh --seed",
             "@php artisan passport:install",
             "@php artisan  passport:keys  --length=512 --force",
