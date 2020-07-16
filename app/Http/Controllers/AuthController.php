@@ -194,7 +194,6 @@ class AuthController extends Controller
 
         $user = User::where('firebase_uid', $uid)->first();
 
-        $isCandidate = Candidate::where('user_id', $user->id)->first();
 
         if ($user == null) {
             $request->request->add(['firebase_uid' => $uid]);
@@ -203,6 +202,8 @@ class AuthController extends Controller
 
             $this->register($request);
         }
+
+        $isCandidate = Candidate::where('user_id', $user->id)->first();
 
         if ($isCandidate == null) {
             $candidateData = new Candidate();
