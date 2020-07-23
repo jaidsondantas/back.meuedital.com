@@ -22,13 +22,13 @@ trait DataProcessingTrait
         return response()->json($response, 200);
     }
 
-    public function responseNotFoundAll($data, AliasModel $alias, int $code)
+    public function responseNotFoundAll($data, AliasModel $alias, int $code, string $entity = '')
     {
         $response = new ResponseModel();
 
         $finishVerb = $this->finishVerb($alias->article);
         $response->entity = [
-            $alias->name->singular => []
+            $entity => []
         ];
         $response->message = $alias->name->singular . " não encontrad$finishVerb.";
         $response->currentPage = $data->currentPage();

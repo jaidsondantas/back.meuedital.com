@@ -7,6 +7,7 @@ use App\Models\Traits\RelationshipUserBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Arr;
 
 class BaseModel extends Model
 {
@@ -114,5 +115,40 @@ class BaseModel extends Model
         $this->populate = array_merge($this->populate, $populate);
     }
 
+    public function getAttribute($key)
+    {
+
+        if (array_key_exists($key, $this->relations)
+            || method_exists($this, $key)
+        )
+        {
+            return parent::getAttribute($key);
+        }
+        else
+        {
+            return parent::getAttribute(snake_case($key));
+        }
+    }
+
+    public function setAttribute($key, $value)
+    {
+        return parent::setAttribute(snake_case($key), $value);
+    }
+
+    public static $snakeAttributes = false;
+
+    /**
+     * The name of the "created at" column.
+     *
+     * @var string
+     */
+    const CREATED_AT = 'createdAt';
+
+    /**
+     * The name of the "updated at" column.
+     *
+     * @var string
+     */
+    const UPDATED_AT = 'updatedAt';
 
 }

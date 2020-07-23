@@ -14,6 +14,7 @@ Route::group([
     'prefix' => 'auth'
 ], function () {
     Route::post('login', 'AuthController@login')->name('auto-part.oauth.login');
+    Route::post('login_adm', 'AuthController@loginAdm')->name('auto-part.oauth.login_adm');
     Route::post('register', 'AuthController@register')->name('auto-part.oauth.register');
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('logout', 'AuthController@logout')->name('auto-part.oauth.logout');

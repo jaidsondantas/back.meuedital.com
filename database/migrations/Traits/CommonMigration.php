@@ -24,6 +24,6 @@ trait CommonMigration
     public function timestampsSoftDeletes($table)
     {
         $table->timestamps();
-        $table->softDeletes();
+        $table->softDeletes('deleteAt');
     }
 }

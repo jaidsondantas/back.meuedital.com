@@ -8,11 +8,12 @@ class Content extends BaseModel
 {
     const ALIAS = ['Conteúdo', 'Conteúdos'];
 
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
 
-        $this->setPopulate([]);
+        $this->setPopulate(['categoryContent']);
     }
 
     /**
@@ -29,5 +30,10 @@ class Content extends BaseModel
             'name' => ['required', 'string'],
             'category_content_id' => ['required'],
         ];
+    }
+
+    public function categoryContent()
+    {
+        return $this->belongsTo(CategoryContent::class);
     }
 }

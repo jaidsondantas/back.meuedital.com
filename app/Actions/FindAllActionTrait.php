@@ -27,7 +27,7 @@ trait FindAllActionTrait
         if (count($data) > 0) {
             return $this->responseFindAll($data);
         } else {
-            return $this->responseNotFoundAll($data, $alias, 400);
+            return $this->responseNotFoundAll($data, $alias, 200, $model->getTable());
         }
     }
 

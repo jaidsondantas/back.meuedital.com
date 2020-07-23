@@ -8,6 +8,7 @@ use App\User;
 use Carbon\Carbon;
 use Firebase\Auth\Token\Exception\InvalidToken;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -108,15 +109,16 @@ class AuthController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'firebase_uid' => $request->input('firebase_uid'),
+            'password' => bcrypt($request->input('password')),
         ]);
 
         $user->save();
 
-        if ($user) {
+        if ($user && $request->input('password') == null) {
             $candidate = new Candidate([
                 'name' => $request->input('name'),
                 'user_id' => $user->id,
-                'created_by' => auth()->user()->id
+                'created_by' => $user->id
             ]);
 
             $candidate->save();
@@ -236,6 +238,90 @@ class AuthController extends Controller
             )->toDateTimeString()
         ]);
     }
+
+    /**
+     * @OA\Post(
+     *     path="/auth/login_adm",
+     *     summary="Generate new Token",
+     *     tags={"Auth"},
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="password",
+     *                     type="string"
+     *                 ),
+     *                 example={"email": "jaidsondantas@gmail.com", "password": "123"}
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK"
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/UserStoreRequest")
+     *     ),
+     *     @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\Schema(
+     *          type="object",
+     *          example={"code": 400, "message": "Bad Request"},
+     *          @OA\Property(property="code", type="integer", description="Error code"),
+     *          @OA\Property(property="message", type="string", description="Error description"),
+     *          ),
+     *      )
+     * )
+     * @param Request $request
+     * @return \Illuminate\Contracts\Support\MessageBag|\Illuminate\Http\JsonResponse|\Illuminate\Support\MessageBag
+     */
+    public function loginAdm(Request $request){
+        $rules = [
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+            'remember_me' => 'boolean'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $this->getArrayMessagesValidate());
+        if ($validator->fails()) {
+            return $validator->getMessageBag();
+        }
+
+        $credentials = request(['email', 'password', 'active' => 1]);
+        if (!Auth::attempt($credentials)) {
+            return response()->json([
+                'message' => 'Usuário ou senha inválido.'
+            ], 401);
+        }
+
+        $user = $request->user();
+        $createToken = $user->createToken('Token de Acesso');
+        $token = $createToken->accessToken;
+
+        $createToken->token->expires_at = Carbon::now()->addHours(5);
+        if ($request->remember_me) {
+            $createToken->token->expires_at = Carbon::now()->addDays(30);
+        }
+
+        $createToken->token->save();
+
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+            'expires_at' => Carbon::parse(
+                $createToken->token->expires_at
+            )->toDateTimeString(),
+            'user' => $user
+        ]);
+    }
+
 
     /**
      * @OA\Post(
