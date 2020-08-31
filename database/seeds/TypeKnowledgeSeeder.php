@@ -16,11 +16,11 @@ class TypeKnowledgeSeeder extends Seeder
         $entity = [
             [
                 'name' => 'Conhecimentos Básicos',
-                'created_by' => 1
+                'createdBy' => 1
             ],
             [
                 'name' => 'Conhecimentos Especificos',
-                'created_by' => 1
+                'createdBy' => 1
             ],
         ];
 

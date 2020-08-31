@@ -327,6 +327,6 @@ class NoticeContentController extends Controller
      */
     public function destroyMultiple(Request $request)
     {
-        return $this->deleteMultiple($request, NoticeContent::class, NoticeContent::getAliasEntity(NoticeContent::ALIAS, 'M'));
+        return $this->deleteMultiple($request, new NoticeContent(), NoticeContent::getAliasEntity(NoticeContent::ALIAS, 'M'));
     }
 }

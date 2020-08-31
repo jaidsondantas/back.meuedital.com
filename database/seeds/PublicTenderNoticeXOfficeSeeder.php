@@ -15,18 +15,18 @@ class PublicTenderNoticeXOfficeSeeder extends Seeder
     {
         $entity = [
             [
-                'office_id' => 1,
-                'public_tender_notice_id' => 1,
-                'average_salary' => 4540.40,
+                'office' => 1,
+                'publicTenderNotice' => 1,
+                'averageSalary' => 4540.40,
                 'amount' => 100,
-                'created_by' => 1,
+                'createdBy' => 1,
             ],
             [
-                'office_id' => 2,
-                'public_tender_notice_id' => 1,
-                'average_salary' => 4540.40,
+                'office' => 2,
+                'publicTenderNotice' => 1,
+                'averageSalary' => 4540.40,
                 'amount' => 100,
-                'created_by' => 1,
+                'createdBy' => 1,
             ],
         ];
 

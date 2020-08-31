@@ -13,17 +13,18 @@ trait CommonMigration
      */
     public function setUsersBy($table)
     {
-        $table->bigInteger('created_by')->unsigned();
-        $table->foreign('created_by')->references('id')->on('users');
-        $table->bigInteger('updated_by')->unsigned()->nullable();
-        $table->foreign('updated_by')->references('id')->on('users');
-        $table->bigInteger('deleted_by')->unsigned()->nullable();
-        $table->foreign('deleted_by')->references('id')->on('users');
+        $table->bigInteger('createdBy')->unsigned();
+        $table->foreign('createdBy')->references('id')->on('users');
+        $table->bigInteger('updatedBy')->unsigned()->nullable();
+        $table->foreign('updatedBy')->references('id')->on('users');
+        $table->bigInteger('deletedBy')->unsigned()->nullable();
+        $table->foreign('deletedBy')->references('id')->on('users');
     }
 
     public function timestampsSoftDeletes($table)
     {
-        $table->timestamps();
-        $table->softDeletes('deleteAt');
+        $table->timestamp('createdAt')->nullable();
+        $table->timestamp('updatedAt')->nullable();
+        $table->softDeletes('deletedAt');
     }
 }

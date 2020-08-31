@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Validation\Rule;
 
 class Content extends BaseModel
@@ -13,7 +14,7 @@ class Content extends BaseModel
     {
         parent::__construct($attributes);
 
-        $this->setPopulate(['categoryContent']);
+        $this->setPopulate(['categoryContent', 'createdBy']);
     }
 
     /**
@@ -28,12 +29,14 @@ class Content extends BaseModel
     {
         return [
             'name' => ['required', 'string'],
-            'category_content_id' => ['required'],
+            'categoryContent' => ['required'],
         ];
     }
 
     public function categoryContent()
     {
-        return $this->belongsTo(CategoryContent::class);
+        return $this->belongsTo(CategoryContent::class, 'categoryContent');
     }
+
+
 }

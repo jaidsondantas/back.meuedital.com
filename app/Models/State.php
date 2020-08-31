@@ -34,11 +34,10 @@ class State extends BaseModel
 
     public function country()
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Country::class,'country');
     }
 
     public function publicTenderNotices(){
-        return $this->belongsToMany(PublicTenderNotice::class, 'public_tender_notice_x_states')
-            ->withPivot('public_tender_notice_id');
+        return $this->belongsToMany(PublicTenderNotice::class, 'public_tender_notice_x_states', 'publicTenderNotice', 'state');
     }
 }

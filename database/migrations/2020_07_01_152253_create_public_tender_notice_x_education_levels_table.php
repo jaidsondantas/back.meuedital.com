@@ -18,11 +18,11 @@ class CreatePublicTenderNoticeXEducationLevelsTable extends Migration
         Schema::create('public_tender_notice_x_education_levels', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
-            $table->bigInteger('education_level_id')->unsigned();
-            $table->foreign('education_level_id', 'education_id_foreign')->references('id')->on('education_levels');
+            $table->bigInteger('educationLevel')->unsigned();
+            $table->foreign('educationLevel', 'education_foreign')->references('id')->on('education_levels');
 
-            $table->bigInteger('public_tender_notice_id')->unsigned();
-            $table->foreign('public_tender_notice_id', 'public_id_foreign')->references('id')->on('public_tender_notices');
+            $table->bigInteger('publicTenderNotice')->unsigned();
+            $table->foreign('publicTenderNotice', 'public_foreign')->references('id')->on('public_tender_notices');
 
             $this->setUsersBy($table);
             $this->timestampsSoftDeletes($table);

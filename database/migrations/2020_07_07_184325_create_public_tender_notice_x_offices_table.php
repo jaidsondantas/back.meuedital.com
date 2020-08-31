@@ -18,13 +18,15 @@ class CreatePublicTenderNoticeXOfficesTable extends Migration
         Schema::create('public_tender_notice_x_offices', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
-            $table->bigInteger('public_tender_notice_id')->unsigned();
-            $table->foreign('public_tender_notice_id')->references('id')->on('public_tender_notices');
+            $table->bigIncrements('id');
 
-            $table->bigInteger('office_id')->unsigned();
-            $table->foreign('office_id')->references('id')->on('offices');
+            $table->bigInteger('publicTenderNotice')->unsigned();
+            $table->foreign('publicTenderNotice')->references('id')->on('public_tender_notices');
 
-            $table->float('average_salary')->nullable();
+            $table->bigInteger('office')->unsigned();
+            $table->foreign('office')->references('id')->on('offices');
+
+            $table->float('averageSalary')->nullable();
             $table->integer('amount')->nullable();
 
             $this->setUsersBy($table);

@@ -7,17 +7,17 @@ trait RelationshipUserBy
 {
     public function createdBy()
     {
-        return $this->belongsTo('App\User', 'created_by');
+        return $this->belongsTo('App\User', 'createdBy');
     }
 
     public function updatedBy()
     {
-        return $this->belongsTo('App\User', 'updated_by');
+        return $this->belongsTo('App\User', 'updatedBy');
     }
 
     public function deletedBy()
     {
-        return $this->belongsTo('App\User', 'deleted_by');
+        return $this->belongsTo('App\User', 'deletedBy');
     }
 
 }

@@ -11,8 +11,35 @@ class PublicTenderNotice extends BaseModel
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
+        $organ = new Organ();
+        $examinationBoard = new ExaminationBoard();
+        $statusPublicTenderNotice = new StatusPublicTenderNotice();
+        $educationLevel = new EducationLevel();
+        $states = new State();
+        $offices = new Office();
 
-        $this->setPopulate(['organ', 'examinationBoard', 'statusPublicTenderNotice', 'educationLevel', 'states', 'offices']);
+        $this->setPopulate(
+            [
+                'organ' => function ($query) use ($organ) {
+                    $query->with($organ->getPopulate());
+                },
+                'examinationBoard' => function ($query) {
+                    $query->with($this::POPULATE_DEFAULT);
+                },
+                'statusPublicTenderNotice' => function ($query) {
+                    $query->with($this::POPULATE_DEFAULT);
+                },
+                'educationLevels' => function ($query) {
+                    $query->with($this::POPULATE_DEFAULT);
+                },
+                'states' => function ($query) {
+                    $query->with(array_merge($this::POPULATE_DEFAULT, ['country' => function ($query) {
+                        $query->with($this::POPULATE_DEFAULT);
+                    }]));
+                },
+                'offices' => function ($query) use ($offices){
+                    $query->with($offices->getPopulate());
+                }]);
     }
 
     /**
@@ -27,43 +54,45 @@ class PublicTenderNotice extends BaseModel
     {
         return [
             'name' => ['required', 'string', Rule::unique('states')->ignore($id)],
-            'description' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:1500'],
             'year' => ['required', 'max:4'],
-            'organ_id' => ['required'],
-            'examination_board_id' => ['required'],
-            'status_public_tender_notice_id' => ['required'],
+            'organ' => ['required'],
+            'examinationBoard' => ['required'],
+            'statusPublicTenderNotice' => ['required'],
         ];
     }
 
     public function organ()
     {
-        return $this->belongsTo(Organ::class);
+
+        return $this->belongsTo(Organ::class, 'organ');
     }
 
     public function examinationBoard()
     {
-        return $this->belongsTo(ExaminationBoard::class);
+        return $this->belongsTo(ExaminationBoard::class, 'examinationBoard');
     }
 
     public function statusPublicTenderNotice()
     {
-        return $this->belongsTo(StatusPublicTenderNotice::class);
+        return $this->belongsTo(StatusPublicTenderNotice::class, 'statusPublicTenderNotice');
     }
 
-    public function educationLevel()
+    public function educationLevels()
     {
-        return $this->belongsToMany(EducationLevel::class, 'public_tender_notice_x_education_levels', 'public_tender_notice_id', 'education_level_id');
+        return $this->belongsToMany(EducationLevel::class, 'public_tender_notice_x_education_levels', 'publicTenderNotice', 'educationLevel');
     }
 
     public function states()
     {
-        return $this->belongsToMany(State::class, 'public_tender_notice_x_states')
-            ->withPivot('public_tender_notice_id');
+        return $this->belongsToMany(State::class, 'public_tender_notice_x_states',
+            'publicTenderNotice', 'state');
     }
 
     public function offices()
     {
-        return $this->belongsToMany(Office::class, 'public_tender_notice_x_offices', 'public_tender_notice_id', 'office_id');
+        return $this->belongsToMany(Office::class, 'public_tender_notice_x_offices',
+            'publicTenderNotice', 'office');
     }
 
 

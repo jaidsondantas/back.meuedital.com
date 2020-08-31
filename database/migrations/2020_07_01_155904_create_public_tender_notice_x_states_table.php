@@ -18,11 +18,11 @@ class CreatePublicTenderNoticeXStatesTable extends Migration
         Schema::create('public_tender_notice_x_states', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
-            $table->bigInteger('state_id')->unsigned();
-            $table->foreign('state_id')->references('id')->on('states');
+            $table->bigInteger('state')->unsigned();
+            $table->foreign('state')->references('id')->on('states');
 
-            $table->bigInteger('public_tender_notice_id')->unsigned();
-            $table->foreign('public_tender_notice_id')->references('id')->on('public_tender_notices');
+            $table->bigInteger('publicTenderNotice')->unsigned();
+            $table->foreign('publicTenderNotice')->references('id')->on('public_tender_notices');
 
             $this->setUsersBy($table);
             $this->timestampsSoftDeletes($table);

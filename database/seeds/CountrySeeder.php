@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Content;
 use App\Models\Country;
 use App\Services\QueryService;
 use Illuminate\Database\Seeder;
@@ -13,14 +14,18 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-        if(!QueryService::ifExistsData(new Country())){
 
-            Country::create([
-                'name'      => 'Brasil',
-                'initials'     => 'BR',
-                'created_by'  => 1,
-            ]);
+            $entity = [
+                [
+                    'name' => 'Brasil',
+                    'initials'     => 'BR',
+                    'createdBy' => 1
+                ]
+            ];
 
-        }
+
+            if (!QueryService::ifExistsData(new Country())) {
+                Country::insert($entity);
+            }
     }
 }

@@ -23,11 +23,11 @@ class CreateOrgansTable extends Migration
             $table->string('description');
             $table->string('image');
 
-            $table->bigInteger('type_organ_id')->unsigned();
-            $table->foreign('type_organ_id')->references('id')->on('type_organs');
+            $table->bigInteger('typeOrgan')->unsigned();
+            $table->foreign('typeOrgan')->references('id')->on('type_organs');
 
-            $table->bigInteger('organ_scope_id')->unsigned();
-            $table->foreign('organ_scope_id')->references('id')->on('organ_scopes');
+            $table->bigInteger('organScope')->unsigned();
+            $table->foreign('organScope')->references('id')->on('organ_scopes');
 
             $this->setUsersBy($table);
             $this->timestampsSoftDeletes($table);

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 trait CreateActionTrait
 {
-    public function create(Model $model, $request, AliasModel $alias, $bodyRequest = null)
+        public function create(Model $model, $request, AliasModel $alias, $bodyRequest = null)
     {
         $bodyRequest = $bodyRequest == null ? $request : $bodyRequest;
 
@@ -27,7 +27,7 @@ trait CreateActionTrait
                 }
             }
 
-            $entity->created_by = auth()->user()->id;
+            $entity->createdBy = auth()->user()->id;
             $entity->save();
 
         }catch (\Exception $e){

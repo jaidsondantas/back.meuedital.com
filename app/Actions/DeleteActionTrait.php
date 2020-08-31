@@ -11,7 +11,7 @@ trait DeleteActionTrait
     {
         $updateEntityDelete = $model::find($id);
         if ($updateEntityDelete) {
-            $updateEntityDelete->deleted_by = auth()->user()->id;
+            $updateEntityDelete->deletedBy = auth()->user()->id;
             $updateEntityDelete->save();
 
             $response = $this->findId($id, new $model(), $request, $alias);

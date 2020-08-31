@@ -15,29 +15,29 @@ class PublicTenderNoticeXStateSeeder extends Seeder
     {
         $entity = [
             [
-                'state_id' => 1,
-                'public_tender_notice_id' => 1,
-                'created_by' => 1,
+                'state' => 1,
+                'publicTenderNotice' => 1,
+                'createdBy' => 1,
             ],
             [
-                'state_id' => 2,
-                'public_tender_notice_id' => 1,
-                'created_by' => 1,
+                'state' => 2,
+                'publicTenderNotice' => 1,
+                'createdBy' => 1,
             ],
             [
-                'state_id' => 1,
-                'public_tender_notice_id' => 2,
-                'created_by' => 1,
+                'state' => 1,
+                'publicTenderNotice' => 2,
+                'createdBy' => 1,
             ],
             [
-                'state_id' => 2,
-                'public_tender_notice_id' => 2,
-                'created_by' => 1,
+                'state' => 2,
+                'publicTenderNotice' => 2,
+                'createdBy' => 1,
             ],
             [
-                'state_id' => 3,
-                'public_tender_notice_id' => 2,
-                'created_by' => 1,
+                'state' => 3,
+                'publicTenderNotice' => 2,
+                'createdBy' => 1,
             ],
         ];
 

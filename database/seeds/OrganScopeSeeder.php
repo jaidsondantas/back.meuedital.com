@@ -16,15 +16,15 @@ class OrganScopeSeeder extends Seeder
         $entity = [
             [
                 'name' => 'Federal',
-                'created_by' => 1
+                'createdBy' => 1
             ],
             [
                 'name' => 'Estadual',
-                'created_by' => 1
+                'createdBy' => 1
             ],
             [
                 'name' => 'Municipal',
-                'created_by' => 1
+                'createdBy' => 1
             ],
         ];
 

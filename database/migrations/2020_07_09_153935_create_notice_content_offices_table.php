@@ -21,11 +21,11 @@ class CreateNoticeContentOfficesTable extends Migration
 
             $table->bigIncrements('id');
 
-            $table->bigInteger('notice_content_id')->unsigned();
-            $table->foreign('notice_content_id')->references('id')->on('notice_contents');
+            $table->bigInteger('noticeContent')->unsigned();
+            $table->foreign('noticeContent')->references('id')->on('notice_contents');
 
-            $table->bigInteger('office_id')->unsigned();
-            $table->foreign('office_id')->references('office_id')->on('public_tender_notice_x_offices');
+            $table->bigInteger('office')->unsigned();
+            $table->foreign('office')->references('office')->on('public_tender_notice_x_offices');
 
             $this->setUsersBy($table);
             $this->timestampsSoftDeletes($table);

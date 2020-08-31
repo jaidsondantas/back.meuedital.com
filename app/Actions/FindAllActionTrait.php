@@ -17,6 +17,7 @@ trait FindAllActionTrait
         $data = $model::when($parameters->where, function ($query) use ($parameters) {
             $andWhere = $parameters->where['and'];
             $orWhere = $parameters->where['or'];
+
             $this->createAndWhere($andWhere, $query);
             $this->createOrWhere($orWhere, $query);
         })

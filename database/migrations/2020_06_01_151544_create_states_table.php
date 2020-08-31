@@ -21,8 +21,8 @@ class CreateStatesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('initials');
-            $table->bigInteger('country_id')->unsigned();
-            $table->foreign('country_id')->references('id')->on('countries');
+            $table->bigInteger('country')->unsigned();
+            $table->foreign('country')->references('id')->on('countries');
 
             $this->setUsersBy($table);
             $this->timestampsSoftDeletes($table);

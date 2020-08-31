@@ -21,14 +21,14 @@ class CreateCandidateNoticeContentsTable extends Migration
 
             $table->bigIncrements('id');
 
-            $table->bigInteger('candidate_id')->unsigned()->nullable();
-            $table->foreign('candidate_id')->references('id')->on('candidates');
+            $table->bigInteger('candidate')->unsigned()->nullable();
+            $table->foreign('candidate')->references('id')->on('candidates');
 
-            $table->bigInteger('office_id')->unsigned()->nullable();
-            $table->foreign('office_id')->references('id')->on('offices');
+            $table->bigInteger('office')->unsigned()->nullable();
+            $table->foreign('office')->references('id')->on('offices');
 
-            $table->bigInteger('notice_content_office_id')->unsigned()->nullable();
-            $table->foreign('notice_content_office_id')->references('id')->on('notice_content_offices');
+            $table->bigInteger('noticeContentOffice')->unsigned()->nullable();
+            $table->foreign('noticeContentOffice')->references('id')->on('notice_content_offices');
 
             $table->integer('status')->nullable()->default(0);
 

@@ -16,6 +16,12 @@ class BaseModel extends Model
     use SoftDeletes;
     use RelationshipUserBy;
 
+    const POPULATE_DEFAULT = [
+            'createdBy', 'updatedBy', 'deletedBy'
+        ];
+
+
+
     const ROUTE_DEFAULT = [
         [
             "method" => "get",
@@ -49,7 +55,7 @@ class BaseModel extends Model
         ]
     ];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deletedAt'];
 
     /**
      * @param array $actions
@@ -126,13 +132,13 @@ class BaseModel extends Model
         }
         else
         {
-            return parent::getAttribute(snake_case($key));
+            return parent::getAttribute(camel_case($key));
         }
     }
 
     public function setAttribute($key, $value)
     {
-        return parent::setAttribute(snake_case($key), $value);
+        return parent::setAttribute(camel_case($key), $value);
     }
 
     public static $snakeAttributes = false;
@@ -150,5 +156,9 @@ class BaseModel extends Model
      * @var string
      */
     const UPDATED_AT = 'updatedAt';
+
+    const DELETED_AT = 'deletedAt';
+
+
 
 }

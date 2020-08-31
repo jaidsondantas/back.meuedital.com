@@ -327,6 +327,6 @@ class ContentController extends Controller
      */
     public function destroyMultiple(Request $request)
     {
-        return $this->deleteMultiple($request, Content::class, Content::getAliasEntity(Content::ALIAS, 'M'));
+        return $this->deleteMultiple($request, new Content(), Content::getAliasEntity(Content::ALIAS, 'M'));
     }
 }

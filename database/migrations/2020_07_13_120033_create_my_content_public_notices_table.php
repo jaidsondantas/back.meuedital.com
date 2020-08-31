@@ -21,26 +21,23 @@ class CreateMyContentPublicNoticesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('status')->default(0);
 
-            $table->bigInteger('candidate_id')->unsigned();
-            $table->foreign('candidate_id')->references('id')->on('candidates');
+            $table->bigInteger('candidate')->unsigned();
+            $table->foreign('candidate')->references('id')->on('candidates');
 
-            $table->bigInteger('content_id')->unsigned()->nullable();
-            $table->foreign('content_id')->references('id')->on('contents');
+            $table->bigInteger('content')->unsigned()->nullable();
+            $table->foreign('content')->references('id')->on('contents');
 
-            $table->bigInteger('office_id')->unsigned()->nullable();
-            $table->foreign('office_id')->references('id')->on('offices');
+            $table->bigInteger('office')->unsigned()->nullable();
+            $table->foreign('office')->references('id')->on('offices');
 
-            $table->bigInteger('category_content_id')->unsigned();
-            $table->foreign('category_content_id')->references('id')->on('category_contents');
+            $table->bigInteger('categoryContent')->unsigned();
+            $table->foreign('categoryContent')->references('id')->on('category_contents');
 
-            $table->bigInteger('type_knowledge_id')->unsigned();
-            $table->foreign('type_knowledge_id')->references('id')->on('type_knowledge');
+            $table->bigInteger('typeKnowledge')->unsigned();
+            $table->foreign('typeKnowledge')->references('id')->on('type_knowledge');
 
-            $table->bigInteger('public_tender_notice_id')->unsigned()->nullable();
-            $table->foreign('public_tender_notice_id')->references('id')->on('public_tender_notices');
-
-            $table->bigInteger('my_public_notice_tender_id')->unsigned();
-            $table->foreign('my_public_notice_tender_id')->references('id')->on('my_public_notice_tenders');
+            $table->bigInteger('publicTenderNotice')->unsigned()->nullable();
+            $table->foreign('publicTenderNotice')->references('id')->on('public_tender_notices');
 
             $this->setUsersBy($table);
             $this->timestampsSoftDeletes($table);

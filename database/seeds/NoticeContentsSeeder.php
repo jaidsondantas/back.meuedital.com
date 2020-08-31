@@ -15,16 +15,16 @@ class NoticeContentsSeeder extends Seeder
     {
         $entity = [
             [
-                'public_tender_notice_id' => 1,
-                'type_knowledge_id' => 1,
-                'content_id' => 1,
-                'created_by' => 1
+                'publicTenderNotice' => 1,
+                'typeKnowledge' => 1,
+                'content' => 1,
+                'createdBy' => 1
             ],
             [
-                'public_tender_notice_id' => 1,
-                'type_knowledge_id' => 1,
-                'content_id' => 2,
-                'created_by' => 1
+                'publicTenderNotice' => 1,
+                'typeKnowledge' => 1,
+                'content' => 2,
+                'createdBy' => 1
             ],
         ];
 

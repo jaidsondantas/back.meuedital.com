@@ -347,6 +347,6 @@ class PublicTenderNoticeXOfficeController extends Controller
      */
     public function destroyMultiple(Request $request)
     {
-        return $this->deleteMultiple($request, PublicTenderNoticeXOffice::class, PublicTenderNoticeXOffice::getAliasEntity(PublicTenderNoticeXOffice::ALIAS, 'M'));
+        return $this->deleteMultiple($request, new PublicTenderNoticeXOffice(), PublicTenderNoticeXOffice::getAliasEntity(PublicTenderNoticeXOffice::ALIAS, 'M'));
     }
 }

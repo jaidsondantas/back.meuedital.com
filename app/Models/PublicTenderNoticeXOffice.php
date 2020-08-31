@@ -14,7 +14,14 @@ class PublicTenderNoticeXOffice extends BaseModel
     {
         parent::__construct($attributes);
 
-        $this->setPopulate(['office']);
+        $publicTenderNotice = new PublicTenderNotice();
+
+        $this->setPopulate(['office' => function ($query) {
+            $query->with($this::POPULATE_DEFAULT);
+        },
+            'publicTenderNotice' => function ($query) use ($publicTenderNotice) {
+                $query->with($publicTenderNotice->getPopulate());
+            }]);
     }
 
     /**
@@ -28,13 +35,18 @@ class PublicTenderNoticeXOffice extends BaseModel
     public function getRules()
     {
         return [
-            'public_tender_notice_id' => ['required'],
-            'office_id' => ['required'],
+            'publicTenderNotice' => ['required'],
+            'office' => ['required'],
         ];
     }
 
     public function office()
     {
-        return $this->belongsTo(Office::class);
+        return $this->belongsTo(Office::class, 'office');
+    }
+
+    public function publicTenderNotice()
+    {
+        return $this->belongsTo(PublicTenderNotice::class, 'publicTenderNotice');
     }
 }

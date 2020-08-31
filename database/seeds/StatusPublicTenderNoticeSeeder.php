@@ -16,11 +16,11 @@ class StatusPublicTenderNoticeSeeder extends Seeder
         $entity = [
             [
                 'name' => 'Publicado',
-                'created_by' => 1
+                'createdBy' => 1
             ],
             [
                 'name' => 'Eminente',
-                'created_by' => 1
+                'createdBy' => 1
             ],
         ];
 

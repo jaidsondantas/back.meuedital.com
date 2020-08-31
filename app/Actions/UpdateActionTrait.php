@@ -28,7 +28,7 @@ trait UpdateActionTrait
         if ($validator->fails()) {
             return response()->json(new ResponseValidate($validator->getMessageBag()), 400);
         }
-        $entity->updated_by = $request->user()->id;
+        $entity->updatedBy = $request->user()->id;
 
         try {
             $entity->save();

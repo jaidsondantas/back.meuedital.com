@@ -16,13 +16,13 @@ class ContentSeeder extends Seeder
         $entity = [
             [
                 'name' => 'Lei Organica do DF',
-                'category_content_id' => 1,
-                'created_by' => 1
+                'categoryContent' => 1,
+                'createdBy' => 1
             ],
             [
                 'name' => 'Substantivo',
-                'category_content_id' => 2,
-                'created_by' => 1
+                'categoryContent' => 2,
+                'createdBy' => 1
             ],
         ];
 

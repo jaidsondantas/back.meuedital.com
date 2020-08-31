@@ -20,17 +20,17 @@ class CreatePublicTenderNoticesTable extends Migration
 
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('description');
+            $table->string('description', 1500);
             $table->string('year');
 
-            $table->bigInteger('organ_id')->unsigned();
-            $table->foreign('organ_id')->references('id')->on('organs');
+            $table->bigInteger('organ')->unsigned();
+            $table->foreign('organ')->references('id')->on('organs');
 
-            $table->bigInteger('examination_board_id')->unsigned();
-            $table->foreign('examination_board_id')->references('id')->on('examination_boards');
+            $table->bigInteger('examinationBoard')->unsigned();
+            $table->foreign('examinationBoard')->references('id')->on('examination_boards');
 
-            $table->bigInteger('status_public_tender_notice_id')->unsigned();
-            $table->foreign('status_public_tender_notice_id')->references('id')->on('status_public_tender_notices');
+            $table->bigInteger('statusPublicTenderNotice')->unsigned();
+            $table->foreign('statusPublicTenderNotice')->references('id')->on('status_public_tender_notices');
 
             $this->setUsersBy($table);
             $this->timestampsSoftDeletes($table);

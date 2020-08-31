@@ -32,7 +32,7 @@ class ExaminationBoard extends BaseModel
 
     public function publicTenderNotices()
     {
-        return $this->hasMany(PublicTenderNotice::class);
+        return $this->hasMany(PublicTenderNotice::class, 'id');
     }
 
 }

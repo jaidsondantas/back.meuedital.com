@@ -16,15 +16,15 @@ class EducationLevelSeeder extends Seeder
         $entity = [
             [
                 'name' => 'Superior',
-                'created_by' => 1
+                'createdBy' => 1
             ],
             [
                 'name' => 'Fundamental',
-                'created_by' => 1
+                'createdBy' => 1
             ],
             [
                 'name' => 'Médio',
-                'created_by' => 1
+                'createdBy' => 1
             ],
         ];
 

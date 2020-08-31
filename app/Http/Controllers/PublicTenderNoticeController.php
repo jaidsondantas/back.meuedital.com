@@ -77,27 +77,6 @@ class PublicTenderNoticeController extends Controller
     public function find(Request $request)
     {
         return $this->findAll(new PublicTenderNotice(), $request, PublicTenderNotice::getAliasEntity(PublicTenderNotice::ALIAS, 'M'));
-//        $model = new PublicTenderNotice();
-//
-//        $parameters = $this->getParameters($request, $model);
-//
-//        $keyOrder = $this->getKeyOrder($parameters->order);
-//
-//        $data = $model::with($parameters->populate)
-//            ->when($parameters->where, function ($query) use ($parameters) {
-//                $andWhere = $parameters->where['and'];
-//                $orWhere = $parameters->where['or'];
-//                $this->createAndWhere($andWhere, $query);
-//                $this->createOrWhere($orWhere, $query);
-//            })
-//            ->orderBy($keyOrder, $parameters->order[$keyOrder])
-//            ->paginate($parameters->per_page);
-//
-//        if (count($data) > 0) {
-//            return $this->responseFindAll($data);
-//        } else {
-//            return $this->responseNotFoundAll($data, $alias, 400);
-//        }
     }
 
     /**

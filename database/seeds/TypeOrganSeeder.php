@@ -16,15 +16,15 @@ class TypeOrganSeeder extends Seeder
         $entity = [
             [
                 'name' => 'Judiciario',
-                'created_by' => 1
+                'createdBy' => 1
             ],
             [
                 'name' => 'Educação',
-                'created_by' => 1
+                'createdBy' => 1
             ],
             [
                 'name' => 'Saúde',
-                'created_by' => 1
+                'createdBy' => 1
             ],
         ];
 

@@ -327,6 +327,6 @@ class CategoryContentController extends Controller
      */
     public function destroyMultiple(Request $request)
     {
-        return $this->deleteMultiple($request, CategoryContent::class, CategoryContent::getAliasEntity(CategoryContent::ALIAS, 'M'));
+        return $this->deleteMultiple($request, new CategoryContent(), CategoryContent::getAliasEntity(CategoryContent::ALIAS, 'M'));
     }
 }

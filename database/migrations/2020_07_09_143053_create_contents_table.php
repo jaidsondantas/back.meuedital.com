@@ -21,8 +21,8 @@ class CreateContentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
 
-            $table->bigInteger('category_content_id')->unsigned();
-            $table->foreign('category_content_id')->references('id')->on('category_contents');
+            $table->bigInteger('categoryContent')->unsigned();
+            $table->foreign('categoryContent')->references('id')->on('category_contents');
 
             $this->setUsersBy($table);
             $this->timestampsSoftDeletes($table);

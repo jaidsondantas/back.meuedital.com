@@ -32,7 +32,7 @@ class TypeOrgan extends BaseModel
 
     public function organs()
     {
-        return  $this->hasMany(Organ::class);
+        return  $this->hasMany(Organ::class, 'id');
     }
 
 }

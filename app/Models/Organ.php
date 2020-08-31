@@ -12,7 +12,14 @@ class Organ extends BaseModel
     {
         parent::__construct($attributes);
 
-        $this->setPopulate(['typeOrgan', 'organScope']);
+        $this->setPopulate([
+            'typeOrgan' => function ($query) {
+                $query->with($this::POPULATE_DEFAULT);
+            },
+            'organScope' => function ($query) {
+                $query->with($this::POPULATE_DEFAULT);
+            },
+        ]);
     }
 
     /**
@@ -32,11 +39,11 @@ class Organ extends BaseModel
 
     public function typeOrgan()
     {
-        return $this->belongsTo(TypeOrgan::class);
+        return $this->belongsTo(TypeOrgan::class, 'typeOrgan');
     }
 
     public function organScope()
     {
-        return $this->belongsTo(OrganScope::class);
+        return $this->belongsTo(OrganScope::class, 'organScope');
     }
 }

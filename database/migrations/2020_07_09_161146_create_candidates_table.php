@@ -21,17 +21,17 @@ class CreateCandidatesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('photo')->nullable();
-            $table->string('date_of_birth')->nullable();
+            $table->string('dateBirth')->nullable();
             $table->string('genre')->nullable();
 
-            $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('user')->unsigned()->nullable();
+            $table->foreign('user')->references('id')->on('users');
 
-            $table->bigInteger('state_id')->unsigned()->nullable();
-            $table->foreign('state_id')->references('id')->on('states');
+            $table->bigInteger('state')->unsigned()->nullable();
+            $table->foreign('state')->references('id')->on('states');
 
-            $table->bigInteger('country_id')->unsigned()->nullable();
-            $table->foreign('country_id')->references('id')->on('countries');
+            $table->bigInteger('country')->unsigned()->nullable();
+            $table->foreign('country')->references('id')->on('countries');
 
             $this->setUsersBy($table);
             $this->timestampsSoftDeletes($table);

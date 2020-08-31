@@ -15,14 +15,14 @@ class NoticeContentOfficeSeeder extends Seeder
     {
         $entity = [
             [
-                'notice_content_id' => 1,
-                'office_id' => 1,
-                'created_by' => 1
+                'noticeContent' => 1,
+                'office' => 1,
+                'createdBy' => 1
             ],
             [
-                'notice_content_id' => 2,
-                'office_id' => 1,
-                'created_by' => 1
+                'noticeContent' => 2,
+                'office' => 1,
+                'createdBy' => 1
             ],
         ];
 

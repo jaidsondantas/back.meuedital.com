@@ -327,6 +327,6 @@ class ExaminationBoardController extends Controller
      */
     public function destroyMultiple(Request $request)
     {
-        return $this->deleteMultiple($request, ExaminationBoard::class, ExaminationBoard::getAliasEntity(ExaminationBoard::ALIAS, 'F'));
+        return $this->deleteMultiple($request, new ExaminationBoard(), ExaminationBoard::getAliasEntity(ExaminationBoard::ALIAS, 'F'));
     }
 }

@@ -12,15 +12,15 @@ class ExaminationBoardSeeder extends Seeder
         $entity = [
             [
                 'name' => 'CESP',
-                'created_by' => 1
+                'createdBy' => 1
             ],
             [
                 'name' => 'IADES',
-                'created_by' => 1
+                'createdBy' => 1
             ],
             [
                 'name' => 'Quadrix',
-                'created_by' => 1
+                'createdBy' => 1
             ],
         ];
 

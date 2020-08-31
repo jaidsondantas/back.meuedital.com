@@ -29,4 +29,9 @@ class Office extends BaseModel
             'name' => ['required', 'string', Rule::unique('examination_boards')->ignore($id)],
         ];
     }
+
+    public function publicNoticePositions()
+    {
+
+    }
 }

@@ -14,8 +14,8 @@ class AddOfficeToMyPublicTenderNoticesTable extends Migration
     public function up()
     {
         Schema::table('my_public_notice_tenders', function (Blueprint $table) {
-            $table->bigInteger('office_id')->unsigned()->nullable();
-            $table->foreign('office_id')->references('id')->on('offices');
+            $table->bigInteger('office')->unsigned()->nullable();
+            $table->foreign('office')->references('id')->on('offices');
         });
     }
 
@@ -27,7 +27,7 @@ class AddOfficeToMyPublicTenderNoticesTable extends Migration
     public function down()
     {
         Schema::table('my_public_notice_tenders', function (Blueprint $table) {
-            $table->dropColumn('office_id');
+            $table->dropColumn('office');
         });
     }
 }

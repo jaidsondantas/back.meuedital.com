@@ -108,7 +108,7 @@ class AuthController extends Controller
         $user = new User([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'firebase_uid' => $request->input('firebase_uid'),
+            'firebaseUid' => $request->input('firebaseUid'),
             'password' => bcrypt($request->input('password')),
         ]);
 
@@ -118,7 +118,7 @@ class AuthController extends Controller
             $candidate = new Candidate([
                 'name' => $request->input('name'),
                 'user_id' => $user->id,
-                'created_by' => $user->id
+                'createdBy' => $user->id
             ]);
 
             $candidate->save();
@@ -194,11 +194,11 @@ class AuthController extends Controller
 
         $uid = $verifiedIdToken->getClaim('sub');
 
-        $user = User::where('firebase_uid', $uid)->first();
+        $user = User::where('firebaseUid', $uid)->first();
 
 
         if ($user == null) {
-            $request->request->add(['firebase_uid' => $uid]);
+            $request->request->add(['firebaseUid' => $uid]);
             $request->request->add(['name' => $verifiedIdToken->getClaim('email')]);
             $request->request->add(['email' => $verifiedIdToken->getClaim('email')]);
 
@@ -211,13 +211,13 @@ class AuthController extends Controller
             $candidateData = new Candidate();
 
             $candidateData->name = $user->name;
-            $candidateData->user_id = $user->id;
-            $candidateData->created_by = $user->id;
+            $candidateData->user = $user->id;
+            $candidateData->createdBy = $user->id;
 
             $candidateData->save();
         }
 
-        $user = User::where('firebase_uid', $uid)->first();
+        $user = User::where('firebaseUid', $uid)->first();
 
         $createToken = $user->createToken('Token de Acesso');
         $token = $createToken->accessToken;
@@ -230,10 +230,10 @@ class AuthController extends Controller
         $createToken->token->save();
 
         return response()->json([
-            'user_id' => $user->id,
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-            'expires_at' => Carbon::parse(
+            'user' => $user->id,
+            'accessToken' => $token,
+            'tokenType' => 'Bearer',
+            'expiresAt' => Carbon::parse(
                 $createToken->token->expires_at
             )->toDateTimeString()
         ]);
@@ -306,16 +306,14 @@ class AuthController extends Controller
         $token = $createToken->accessToken;
 
         $createToken->token->expires_at = Carbon::now()->addHours(5);
-        if ($request->remember_me) {
-            $createToken->token->expires_at = Carbon::now()->addDays(30);
-        }
+
 
         $createToken->token->save();
 
         return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-            'expires_at' => Carbon::parse(
+            'accessToken' => $token,
+            'tokenType' => 'Bearer',
+            'expiresAt' => Carbon::parse(
                 $createToken->token->expires_at
             )->toDateTimeString(),
             'user' => $user

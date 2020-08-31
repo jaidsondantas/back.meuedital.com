@@ -20,14 +20,14 @@ class CreateNoticeContentsTable extends Migration
 
             $table->bigIncrements('id');
 
-            $table->bigInteger('public_tender_notice_id')->unsigned();
-            $table->foreign('public_tender_notice_id')->references('id')->on('public_tender_notices');
+            $table->bigInteger('publicTenderNotice')->unsigned();
+            $table->foreign('publicTenderNotice')->references('id')->on('public_tender_notices');
 
-            $table->bigInteger('content_id')->unsigned();
-            $table->foreign('content_id')->references('id')->on('contents');
+            $table->bigInteger('content')->unsigned();
+            $table->foreign('content')->references('id')->on('contents');
 
-            $table->bigInteger('type_knowledge_id')->unsigned();
-            $table->foreign('type_knowledge_id')->references('id')->on('type_knowledge');
+            $table->bigInteger('typeKnowledge')->unsigned();
+            $table->foreign('typeKnowledge')->references('id')->on('type_knowledge');
 
             $this->setUsersBy($table);
             $this->timestampsSoftDeletes($table);

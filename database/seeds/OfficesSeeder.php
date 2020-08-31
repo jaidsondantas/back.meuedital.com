@@ -16,15 +16,15 @@ class OfficesSeeder extends Seeder
         $entity = [
             [
                 'name' => 'Fiscal',
-                'created_by' => 1
+                'createdBy' => 1
             ],
             [
                 'name' => 'Agente Penitenciário',
-                'created_by' => 1
+                'createdBy' => 1
             ],
             [
                 'name' => 'Agente de Rua',
-                'created_by' => 1
+                'createdBy' => 1
             ],
         ];
 

@@ -20,11 +20,11 @@ class CreateMyPuclicNoticeTendersTable extends Migration
 
             $table->bigIncrements('id');
 
-            $table->bigInteger('candidate_id')->unsigned();
-            $table->foreign('candidate_id')->references('id')->on('candidates');
+            $table->bigInteger('candidate')->unsigned();
+            $table->foreign('candidate')->references('id')->on('candidates');
 
-            $table->bigInteger('public_tender_notice_id')->unsigned()->nullable();
-            $table->foreign('public_tender_notice_id')->references('id')->on('public_tender_notices');
+            $table->bigInteger('publicTenderNotice')->unsigned()->nullable();
+            $table->foreign('publicTenderNotice')->references('id')->on('public_tender_notices');
 
             $this->setUsersBy($table);
             $this->timestampsSoftDeletes($table);

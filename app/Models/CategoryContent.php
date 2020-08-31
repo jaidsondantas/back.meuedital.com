@@ -32,7 +32,7 @@ class CategoryContent extends BaseModel
 
     public function contents()
     {
-        return $this->hasMany(Content::class);
+        return $this->hasMany(Content::class, 'categoryContent');
     }
 
 }

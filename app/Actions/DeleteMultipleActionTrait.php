@@ -14,7 +14,7 @@ trait DeleteMultipleActionTrait
 
         if (array_key_exists('id', $parameters->where['and'])) {
             $ids = explode(',', $parameters->where['and']['id']);
-            $model::whereIn('id', $ids)->update(['deleted_by' => auth()->user()->id]);
+            $model::whereIn('id', $ids)->update(['deletedBy' => auth()->user()->id]);
             $model::destroy($ids);
         } else {
             $data = $model::when($parameters->where, function ($query) use ($parameters) {
@@ -25,7 +25,7 @@ trait DeleteMultipleActionTrait
             })->first();
 
             if ($data) {
-                $data->deleted_by = auth()->user()->id;
+                $data->deletedBy = auth()->user()->id;
                 $data->save();
                 $model::destroy($data->id);
             }

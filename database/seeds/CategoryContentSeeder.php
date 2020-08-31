@@ -16,11 +16,11 @@ class CategoryContentSeeder extends Seeder
         $entity = [
             [
                 'name' => 'LEGISLATIVO',
-                'created_by' => 1
+                'createdBy' => 1
             ],
             [
                 'name' => 'LINGUA PORTUGUESA',
-                'created_by' => 1
+                'createdBy' => 1
             ],
         ];
 

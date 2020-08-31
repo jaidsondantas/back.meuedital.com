@@ -34,7 +34,7 @@ class Country extends BaseModel
 
     public function state()
     {
-        return $this->hasMany(State::class);
+        return $this->hasMany(State::class, 'state');
     }
 
 
