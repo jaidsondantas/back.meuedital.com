@@ -2,10 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Auth\AuthenticationException;
-use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
-use Illuminate\Http\JsonResponse;
 
 class Authenticate extends Middleware
 {
@@ -20,7 +17,7 @@ class Authenticate extends Middleware
      *
      * @throws \Illuminate\Auth\AuthenticationException
      */
-    public function handle($request, Closure $next, ...$guards)
+    public function handle($request, \Closure $next, ...$guards)
     {
         $checkLogin = $this->authenticate($request, $guards);
 

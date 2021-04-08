@@ -71,8 +71,8 @@
  *      name="populate",
  *      description="examples: <br/> <pre><em>['populateAll']</em></pre>",
  *      @OA\Schema(
- *          type="string",
- *          default={"populateAll"}
+ *          type="array",
+ *          default={"populateAll"},
  *      ),
  * ),
  * @OA\Parameter(
